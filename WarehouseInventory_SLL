@@ -1,0 +1,176 @@
+
+package COEN352.A2;
+import java.util.Arrays;
+import java.lang.Math;
+
+
+
+public class WarehouseInventory_SLL
+
+{
+
+	public static void main(String[] args) 
+	
+	{
+		
+		// object 
+		
+		WarehouseInventory_SLL wh = new WarehouseInventory_SLL();
+		
+		// weren't able to read excel file -> storing informations from inventory list using objects and set functions
+		
+   // 1. Inventory ID 1
+				
+				Inventory in1 = new Inventory(); 
+				
+				in1.setID("IN0001"); 
+        in1.setName("Item 1");
+			  in1.setDescription("Desc 1");
+        in1.setUnitPrice(51.00);
+				in1.setQuantityinStock(25);
+				in1.setInventoryValue(1275.00);
+				in1.setReorderLevel(29);
+				in1.setReorderTimeDays(13);
+				in1.setQuantityInReorder(50);
+				in1.setDiscontinuedStatus(true);//yellow:true
+				
+	 // 2. Inventory ID 2
+				
+				Inventory in2 = new Inventory(); 
+				
+				in2.setID("IN0002"); 
+        in2.setName("Item 2");
+			  in2.setDescription("Desc 2");
+        in2.setUnitPrice(93.00);
+				in2.setQuantityinStock(132);
+				in2.setInventoryValue(12276.00);
+				in2.setReorderLevel(231);
+				in2.setReorderTimeDays(4);
+				in2.setQuantityInReorder(50);
+				in2.setDiscontinuedStatus(true); //yellow:true
+     
+   // 3. Inventory ID 3
+				
+				Inventory in3 = new Inventory(); 
+				
+				in3.setID("IN0003"); 
+        in3.setName("Item 3");
+			  in3.setDescription("Desc 3");
+        in3.setUnitPrice(57.00);
+				in3.setQuantityinStock(151);
+				in3.setInventoryValue(8607.00);
+				in3.setReorderLevel(114);
+				in3.setReorderTimeDays(11);
+				in3.setQuantityInReorder(150);
+				in3.setDiscontinuedStatus(false); //grey:false
+				
+    // 4. Inventory ID 4
+				
+				Inventory in4 = new Inventory(); 
+				
+				in4.setID("IN0004"); 
+        in4.setName("Item 4");
+			  in4.setDescription("Desc 4");
+        in4.setUnitPrice(19.00);
+				in4.setQuantityinStock(186);
+				in4.setInventoryValue(3534.00);
+				in4.setReorderLevel(158);
+				in4.setReorderTimeDays(6);
+				in4.setQuantityInReorder(50);
+				in4.setDiscontinuedStatus(false); //grey:false
+				     
+    // 5. Inventory ID 5
+				
+				Inventory in5 = new Inventory(); 
+				
+				in5.setID("IN0005"); 
+        in5.setName("Item 5");
+			  in5.setDescription("Desc 5");
+        in5.setUnitPrice(75.00);
+				in5.setQuantityinStock(62);
+				in5.setInventoryValue(4650.00);
+				in5.setReorderLevel(39);
+				in5.setReorderTimeDays(12);
+				in5.setQuantityInReorder(50);
+				in5.setDiscontinuedStatus(false); //grey:false	
+
+	 // 6. Inventory ID 6
+				
+				Inventory in6 = new Inventory(); 
+				
+				in6.setID("IN0006"); 
+        in6.setName("Item 6");
+			  in6.setDescription("Desc 6");
+        in6.setUnitPrice(11.00);
+				in6.setQuantityinStock(5);
+				in6.setInventoryValue(55.00);
+				in6.setReorderLevel(9);
+				in6.setReorderTimeDays(13);
+				in6.setQuantityInReorder(150);
+				in6.setDiscontinuedStatus(true); //yellow:true
+        
+				// Testing the insert function 
+				System.out.println("-------------------------------------------------------------------------- ");
+				System.out.println(" Inserting new values: ...");
+				wh.InsertRecord(inventory_1);
+				wh.InsertRecord(inventory_2);
+				warehouseDb.InsertRecord(inventory_3);
+				warehouseDb.InsertRecord(inventory_4);
+				warehouseDb.InsertRecord(inventory_5);
+				warehouseDb.InsertRecord(inventory_6);
+				warehouseDb.InsertRecord(inventory_7);
+				warehouseDb.InsertRecord(inventory_8);
+				warehouseDb.InsertRecord(inventory_9);
+				warehouseDb.InsertRecord(inventory_11);
+				warehouseDb.InsertRecord(inventory_12);
+				System.out.println("-------------------------------------------------------------------------- ");
+				
+				// Verifying the total number and value of the added items in the database 
+				System.out.println(" Results: ");
+				System.out.println(" There are " + warehouseDb.TotalInventoryQuantity() + " inventories in this database.");
+				System.out.println(" The total value of the inventories is: " + warehouseDb.TotalInventoryValue());     
+				System.out.println();
+				
+				// printing the sorted array of the indicated index (which is the inventory member function)
+				
+				// System.out.println(Arrays.toString(warehouseDb.CreateIndex("Quantity")));
+				
+				// Testing if the insert function functions 
+				System.out.println("-------------------------------------------------------------------------- ");
+				System.out.println(" Inserting " + inventory_10.getSKU() + " in the inventory database.... "); 
+				warehouseDb.InsertRecord(inventory_10);
+				System.out.println("-------------------------------------------------------------------------- ");
+				System.out.println(" Results: ");
+				// verifying if the totals have changed with the new input 
+				System.out.println(" There are " + warehouseDb.TotalInventoryQuantity() + " inventories in this database.");
+				System.out.println(" The total value of the inventories is: " + warehouseDb.TotalInventoryValue());
+				System.out.println();
+				
+				System.out.println("-------------------------------------------------------------------------- ");
+				// Testing the find function 
+				System.out.println(" Finding " + inventory_9.getSKU()+ " in the inventory database...");
+				System.out.println("-------------------------------------------------------------------------- ");
+				warehouseDb.findRecord("IN009");
+				System.out.println();
+
+				System.out.println("-------------------------------------------------------------------------- ");
+				System.out.println(" Removing " + inventory_10.getSKU()+ " From the inventory database...");
+				System.out.println("-------------------------------------------------------------------------- ");
+				// Testing the remove record and verifying if the totals have reduced 
+				warehouseDb.RemoveRecord("IN0010");
+				System.out.println(" There are " + warehouseDb.TotalInventoryQuantity() + " inventories in this database.");
+				System.out.println(" The total value of the inventories is: " + warehouseDb.TotalInventoryValue());
+				System.out.println();
+				
+				System.out.println("-------------------------------------------------------------------------- ");
+				// Testing the clear database function and verifying if the warehouse is clean 
+				System.out.println(" Clearing the inventory database .....  ");
+				warehouseDb.clearDatabase();
+				System.out.println("-------------------------------------------------------------------------- ");
+				
+				System.out.println(" Results: ");
+				System.out.println(" Trying to find "+ inventory_1.getSKU()+ " in the deleted inventory database...");
+				warehouseDb.findRecord("IN001");
+				System.out.println(" There are " + warehouseDb.TotalInventoryQuantity() + " inventories in this database.");
+				System.out.println(" The total value of the inventories is: " + warehouseDb.TotalInventoryValue());
+			
