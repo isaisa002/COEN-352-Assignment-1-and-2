@@ -1,38 +1,33 @@
-/** Source code example for "A Practical Introduction to Data
-    Structures and Algorithm Analysis, 3rd Edition (Java)" 
-    by Clifford A. Shaffer
-    Copyright 2008-2011 by Clifford A. Shaffer
-*/
+package coen352.a1;
 
-/** The Dictionary abstract class. */
 
-package coen352.ch5.tttree;
+/*Each record consists of a unique key
+in the whole collection and a value associated with the key.
+Each record is formed from a pair of key and value, called key-value pair */
 
-public interface ADTDictionary<K, E> {
+public interface ADTDictionary<Key, Value>    {
 
-  /** Reinitialize dictionary */
-  public void clear();
+    //Reinitialize dictionary
+    public void clear();
 
-  /** Insert a record
-      @param  k The key for the record being inserted.
-      @param  e The record being inserted. */
-  public void insert(K k, E e);
+    //Insert a record : key and the value of the record inserted
+    public void insert(Key k, Value v);
 
-  /** Remove and return a record.
-      @param k The key of the record to be removed.
-      @return A maching record. If multiple records match
-      "k", remove an arbitrary one. Return null if no record
-      with key "k" exists. */
-  public E remove(K k);
+    /*Remove and return a record.
+    k is the key of the record to be removed.
+    If multiple records match remove an arbitrary one.
+    Return null if no record with key "k" exists. */
+    public Value remove(Key k);
 
-  /** Remove and return an arbitrary record from dictionary.
-      @return the record removed, or null if none exists. */
-  public E removeAny();
+    //Remove and return an arbitrary record from dictionary.
+    // Return the record removed, or null if none exists.
+    public Value removeAny();
 
-  /** @return A record matching "k" (null if none exists).
-      If multiple records match, return an arbitrary one. */
-  public E find(K k);
+    //return A record matching "k" (null if none exists).
+    // If multiple records match, return an arbitrary one.
+    public Value find(Key k);
 
-  /** @return the number of records in the dictionary. */
-  public int size();
+    //return the number of records in the dictionary.
+    public int dictionarySize();
 };
+
