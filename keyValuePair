@@ -22,12 +22,13 @@ package coen352.a1;
 
        //get functions
 
-       public Key key() {
+       public Key getKey() {
            return k;
        }
 
-       public ELEM value() {
+       public ELEM getElement() {
            return element;
        }
+
 
    }
