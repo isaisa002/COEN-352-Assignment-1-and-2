@@ -1,0 +1,281 @@
+package coen352.a1;
+
+public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
+
+    private DoubleNode<ELEM> head;       //Object that points to head of list
+    private DoubleNode<ELEM> tail;      // Object that points to tail of list
+    private DoubleNode<ELEM> current;  // Object that points to current node of list
+
+    private int nodeCount;      // Count number of node in list, length of list
+
+
+
+    //Constructors
+    public DoubleLinkedList(){
+        //Create a node with previous and next values that doesn't have data in it
+        current = head = new DoubleNode<ELEM>(null,null);
+        tail = new DoubleNode<ELEM>(head, null); // head <- tail
+        head.setNext(tail); //head -> tail
+        nodeCount=0;
+        System.out.println("dll constructor");
+
+    }
+
+
+
+    public void clear(){
+
+
+        /*
+        this.current = null;
+        this.head = null;
+        this.tail = null;
+        this.nodeCount = 0;
+*/
+
+
+
+        head.setNext(null);    //Disconnect head to other node
+
+        //Remove any link to other node
+        // Create a new head with no data like in constructor
+        current = head = new DoubleNode<ELEM>(null,null);
+        tail = new DoubleNode<ELEM>(head, null); // head <- tail
+        head.setNext(tail); //head -> tail
+        nodeCount=0;
+
+
+    }
+
+    //Insert an element at the position of current location.
+    // Ensure that the list’s capacity is not exceeded.
+    public void insert(ELEM element){
+
+
+
+
+        if(this.numElements()==0)            // if list is empty
+        {
+            System.out.println("insert 1");
+            //new node with the element passed and null as next node
+            DoubleNode<ELEM> newNode = new DoubleNode<ELEM>(element,null,null);
+            head = newNode;
+            current = head;                                             // this.current = head = new node
+            tail = current.getNext();                                     // this.tail = current.next = null
+            this.moveToNext();
+        }
+        else
+        {
+            if(current.getNext()==null)                                  // if want to insert at the end of list
+            {
+                System.out.println("insert 2");
+                current.setNext(new DoubleNode<ELEM>(element,current,null));    // set next of current to a new node with wanted parameters
+                tail = current.getNext();                                // this.tail = new node
+                this.moveToNext();                                       //this.current = new node
+            }
+            else
+            {
+                System.out.println("insert 3");
+                DoubleNode<ELEM> temp = current;                         // temp is a copy of current pointer & is set to node that current is pointing to
+                this.moveToNext();                                 // move current to its next node and temp is still pointing at old current
+                DoubleNode<ELEM> newNode = new DoubleNode<ELEM>(element,temp,current); // old current (temp) <- new node -> new current
+                temp.setNext(newNode);                                // old current <-> new node -> new current
+                current.setPrevious(newNode);                        // old current <-> new node <-> new current
+            }
+        }
+
+        nodeCount++;
+    }
+
+    //Add an element at the end of the list.
+    // Ensure that the list’s capacity is not exceeded.
+    public void append(ELEM element){
+
+        DoubleNode<ELEM> newNode = new DoubleNode<>(element, this.tail,null);
+
+        if(this.tail != null)
+        {
+            this.tail.setNext(newNode);
+        }
+
+        if (this.head == null)
+        {
+            this.head = newNode;
+        }
+
+        if (this.current == null)
+        {
+            this.current = this.head;
+        } else {
+            this.current = newNode;
+        }
+
+        nodeCount++;
+
+
+
+
+
+
+
+/*
+        // old tail.previous <- new <- -> tail
+        tail.setPrevious(new DoubleNode<ELEM>(element,tail.getPrevious(),tail));
+
+        // old tail.previous <- -> new <- -> tail
+        tail.getPrevious().getPrevious().setNext(tail.getPrevious());
+        nodeCount++;
+        */
+
+    }
+
+    //Remove the node at the position of current location
+    // Return the node that was removed.
+    public ELEM remove()
+    {
+
+        if (current == null) {                          //ie nothing in list
+            return null;
+        }
+
+        ELEM removedItem = current.getElement();      // remember element that want to remove
+
+
+
+
+
+        if (current == head) {                     // if want to remove the head
+            head = head.getNext();                // Set a new head
+
+            current = head;                       // set current to new head (old next of head)
+
+
+        } else{
+
+            DoubleNode<ELEM> movingIndex = head;
+
+            while(movingIndex.getNext() != current)
+            {
+                movingIndex = movingIndex.getNext();
+            }
+            // here at previous of item to remove
+
+
+            //current.previous (moving index) --- current (item to remove) ---> current.next
+            movingIndex.setNext(current.getNext());
+            //current.previous (moving index) <---- current (item to remove) ---> current.next
+            current.getNext().setPrevious(movingIndex);
+
+        }
+        nodeCount--;
+        return removedItem;
+
+    }
+
+    //Set the current position to the start of the list (head)
+    public void moveToHead(){
+        System.out.println("mth");
+        current = head;
+    }
+
+    //Set the current position to the end of the list (tail)
+    public void moveToTail(){
+current=tail;
+    }
+
+    //Move the current position one step left.
+    // No change if already at the head
+    public void moveToPrevious(){
+        if(current!= head){
+            current=current.getPrevious();
+        }
+    }
+
+    //Move the current position one step right.
+    // No change if already at tail
+    public void moveToNext(){
+        if(current!= tail){
+            current=current.getNext();
+            System.out.println("mtn if");
+        }
+
+    }
+
+    //return The number of elements in the list.
+    public int numElements(){
+        return nodeCount;
+    }
+
+    //return The position of the current element. */
+
+    public int getcurrPosition(){
+        System.out.println("get curr pos");
+        DoubleNode<ELEM> movingIndex = head;
+
+        int i;
+        for(i=0; current!= movingIndex; i++) {
+            movingIndex = movingIndex.getNext();
+        }
+        return i;
+    }
+
+
+
+    //Set current at position passed.
+    public void setCurrPosition(int position){
+        assert (position>=0) && position<=nodeCount : "Position Out of range";
+        current=head;
+        for(int i=0;i<position;i++)
+            current=current.getNext();
+    }
+
+    //return The current element. */
+    public ELEM getElement(){
+        if (current == null) {
+            System.out.println("get elem null");
+            return null;
+
+        }
+
+        System.out.println("get elm");
+        return current.getElement();
+    }
+
+
+
+
+
+    public String toString() {
+
+        // Save the current position of the list
+        int oldPos = getcurrPosition();
+        int numElements = numElements();
+        StringBuffer out = new StringBuffer((numElements() + 1) * 4);
+
+        moveToHead();
+        out.append("< ");
+        for (int i = 0; i < oldPos; i++) {
+            out.append(getElement());
+            out.append(" ");
+            moveToNext();
+        }
+        out.append("| ");
+        for (int i = oldPos; i < numElements; i++) {
+            out.append(getElement());
+            out.append(" ");
+            moveToNext();
+        }
+        out.append(">");
+        setCurrPosition(oldPos); // Reset the fence to its original position
+
+        return out.toString();
+
+    }
+
+
+}
+
+
+
+
+

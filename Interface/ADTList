@@ -1,0 +1,56 @@
+package coen352.a1;
+
+
+//ADT List : Interface to create
+// a single linked list or double linked list for the key and the value of dictionary
+
+public interface ADTList<ELEM> {
+
+    //Remove all contents from the list to make it empty
+    public void clear();
+
+    //Insert an element at the position of current location.
+    // Ensure that the list’s capacity is not exceeded.
+    public void insert(ELEM element);
+
+    //Add an element at the end of the list.
+    // Ensure that the list’s capacity is not exceeded.
+    public void append(ELEM element);
+
+    //Remove the node at the position of current location
+    // Return the node that was removed.
+    public ELEM remove();
+
+    //Set the current position to the start of the list (head)
+    public void moveToHead();
+
+    //Set the current position to the end of the list (tail)
+    public void moveToTail();
+
+    //Move the current position one step left.
+    // No change if already at the head
+    public void moveToPrevious();
+
+    //Move the current position one step right.
+    // No change if already at tail
+    public void moveToNext();
+
+    //return The number of elements in the list.
+    public int numElements();
+
+    //return The position of the current element. */
+    public int getcurrPosition();
+
+    //Set current at position passed.
+    public void setCurrPosition(int position);
+
+    //return The current element. */
+    public ELEM getElement();
+
+
+    /** @returen true if the value K exisits in the list*/
+    /**public boolean findByKey(E key); */
+
+}
+
+

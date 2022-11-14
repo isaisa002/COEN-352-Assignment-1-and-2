@@ -1,0 +1,78 @@
+package coen352.a1;
+
+
+//Node of linked list (Block in the list)
+// has element (either key or value according to the list)
+// & address of next value
+
+public class Node<ELEM> {
+
+    private ELEM element;               // Store data for key or value
+    private Node<ELEM> next;         // Pointer to the next node containing a data of type ELEM
+
+    //CONSTRUCTORS
+
+    //Default constructor
+    Node(Node<ELEM> nextElem){
+        next = nextElem;
+    }
+
+    //Regular constructor
+    Node(ELEM elem, Node<ELEM> nextElem){
+        element = elem;
+        next = nextElem;
+    }
+
+
+    // Set & Get functions
+
+    Node<ELEM> getNext() {return next;}
+    Node <ELEM> setNext(Node<ELEM> nextNode){
+        return next = nextNode;
+    }
+
+    ELEM getElement() { return element;}
+    ELEM setElement(ELEM elem){
+        return element = elem;
+    }
+
+
+
+    //EXTENSIONS TO SUPPORT FREELISTS
+
+    static Node freelist = null;
+
+    //return a new node
+
+    static <ELEM> Node<ELEM> get(ELEM element, Node<ELEM> nextval)
+    {
+        //Nothing in freelist, get from new
+        if (freelist==null) {return new Node<ELEM>(element, nextval);}
+
+
+        //if there's a freelist
+        Node<ELEM> temp = freelist;         // temp point to freelist
+        freelist=freelist.getNext();        // To have access to the rest of freelist
+
+       //add wanted node to freelist
+        temp.setElement(element);
+        temp.setNext(nextval);
+
+
+        //return node added to freelist
+        return temp;
+
+    }
+
+
+
+
+    void release()
+    {
+        element=null;
+        next = freelist;           //this.next
+        freelist=this;
+    }
+
+
+}

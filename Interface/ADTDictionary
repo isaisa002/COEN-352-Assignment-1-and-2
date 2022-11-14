@@ -1,0 +1,33 @@
+package coen352.a1;
+
+
+/*Each record consists of a unique key
+in the whole collection and a value associated with the key.
+Each record is formed from a pair of key and value, called key-value pair */
+
+public interface ADTDictionary<Key, Value>    {
+
+    //Reinitialize dictionary
+    public void clear();
+
+    //Insert a record : key and the value of the record inserted
+    public void insert(Key k, Value v);
+
+    /*Remove and return a record.
+    k is the key of the record to be removed.
+    If multiple records match remove an arbitrary one.
+    Return null if no record with key "k" exists. */
+    public Value remove(Key k);
+
+    //Remove and return an arbitrary record from dictionary.
+    // Return the record removed, or null if none exists.
+    public Value removeAny();
+
+    //return A record matching "k" (null if none exists).
+    // If multiple records match, return an arbitrary one.
+    public Value find(Key k);
+
+    //return the number of records in the dictionary.
+    public int dictionarySize();
+};
+

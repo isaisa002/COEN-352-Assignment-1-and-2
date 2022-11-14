@@ -1,0 +1,45 @@
+package coen352.a1;
+
+public class DoubleNode<ELEM> {
+
+    private ELEM element;               // Store data for value
+    private DoubleNode<ELEM> next;         // Pointer to the next node containing a data of type ELEM
+    private DoubleNode<ELEM> previous;     // Pointer to the previous node
+
+    // Constructors
+
+    //Default constructor
+    DoubleNode(DoubleNode<ELEM> prev, DoubleNode<ELEM> nextval){
+        previous = prev;
+        next = nextval;
+    }
+
+    // Regular constructor
+    DoubleNode(ELEM elem, DoubleNode<ELEM> prev, DoubleNode<ELEM> nextval){
+        element = elem;
+        previous = prev;
+        next = nextval;
+    }
+
+    //Set and get fucntions
+
+    DoubleNode<ELEM> getPrevious() { return previous;}
+    DoubleNode<ELEM> getNext() { return next;}
+    ELEM getElement() { return element;}
+
+
+
+    DoubleNode<ELEM> setPrevious(DoubleNode<ELEM> prev) {
+        return previous = prev;
+    }
+
+    DoubleNode<ELEM> setNext(DoubleNode<ELEM> n) {
+        return next = n;
+    }
+
+    ELEM setElement(ELEM elem) {
+        return element = elem;
+    }
+
+
+}
