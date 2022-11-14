@@ -2,24 +2,22 @@ package COEN352.a1;
 import java.util.Arrays;
 import java.lang.Math;
 
-
-
-public class WarehouseInventory_SLL {
+public class WarehouseInventory_DLL {
 
     public static void main(String[] args) {
 
         // object
-        WarehouseInventory_SLL wh = new WarehouseInventory_SLL();
+        COEN352.a1.WarehouseInventory_DLL wh = new COEN352.a1.WarehouseInventory_DLL();
 
         // weren't able to read excel file -> storing informations from inventory list using objects and set functions from Inventory.java
 
         // 1. Inventory ID 1
-        Inventory in1 = new Inventory();
+        COEN352.a1.Inventory in1 = new COEN352.a1.Inventory();
         in1.setID("IN0001");
         in1.setName("Item 1");
         in1.setDescription("Desc 1");
         in1.setUnitPrice(51.00);
-        in1.setQuantityinStock(25);
+        in1.setQuantityInStock(25);
         in1.setInventoryValue(1275.00);
         in1.setReorderLevel(29);
         in1.setReorderTimeDays(13);
@@ -27,12 +25,12 @@ public class WarehouseInventory_SLL {
         in1.setDiscontinuedStatus(true);//yellow:true
 
         // 2. Inventory ID 2
-        Inventory in2 = new Inventory();
+        COEN352.a1.Inventory in2 = new COEN352.a1.Inventory();
         in2.setID("IN0002");
         in2.setName("Item 2");
         in2.setDescription("Desc 2");
         in2.setUnitPrice(93.00);
-        in2.setQuantityinStock(132);
+        in2.setQuantityInStock(132);
         in2.setInventoryValue(12276.00);
         in2.setReorderLevel(231);
         in2.setReorderTimeDays(4);
@@ -40,12 +38,12 @@ public class WarehouseInventory_SLL {
         in2.setDiscontinuedStatus(true); //yellow:true
 
         // 3. Inventory ID 3
-        Inventory in3 = new Inventory();
+        COEN352.a1.Inventory in3 = new COEN352.a1.Inventory();
         in3.setID("IN0003");
         in3.setName("Item 3");
         in3.setDescription("Desc 3");
         in3.setUnitPrice(57.00);
-        in3.setQuantityinStock(151);
+        in3.setQuantityInStock(151);
         in3.setInventoryValue(8607.00);
         in3.setReorderLevel(114);
         in3.setReorderTimeDays(11);
@@ -53,12 +51,12 @@ public class WarehouseInventory_SLL {
         in3.setDiscontinuedStatus(false); //grey:false
 
         // 4. Inventory ID 4
-        Inventory in4 = new Inventory();
+        COEN352.a1.Inventory in4 = new COEN352.a1.Inventory();
         in4.setID("IN0004");
         in4.setName("Item 4");
         in4.setDescription("Desc 4");
         in4.setUnitPrice(19.00);
-        in4.setQuantityinStock(186);
+        in4.setQuantityInStock(186);
         in4.setInventoryValue(3534.00);
         in4.setReorderLevel(158);
         in4.setReorderTimeDays(6);
@@ -66,12 +64,12 @@ public class WarehouseInventory_SLL {
         in4.setDiscontinuedStatus(false); //grey:false
 
         // 5. Inventory ID 5
-        Inventory in5 = new Inventory();
+        COEN352.a1.Inventory in5 = new COEN352.a1.Inventory();
         in5.setID("IN0005");
         in5.setName("Item 5");
         in5.setDescription("Desc 5");
         in5.setUnitPrice(75.00);
-        in5.setQuantityinStock(62);
+        in5.setQuantityInStock(62);
         in5.setInventoryValue(4650.00);
         in5.setReorderLevel(39);
         in5.setReorderTimeDays(12);
@@ -79,12 +77,12 @@ public class WarehouseInventory_SLL {
         in5.setDiscontinuedStatus(false); //grey:false
 
         // 6. Inventory ID 6
-        Inventory in6 = new Inventory();
+        COEN352.a1.Inventory in6 = new COEN352.a1.Inventory();
         in6.setID("IN0006");
         in6.setName("Item 6");
         in6.setDescription("Desc 6");
         in6.setUnitPrice(11.00);
-        in6.setQuantityinStock(5);
+        in6.setQuantityInStock(5);
         in6.setInventoryValue(55.00);
         in6.setReorderLevel(9);
         in6.setReorderTimeDays(13);
@@ -92,12 +90,12 @@ public class WarehouseInventory_SLL {
         in6.setDiscontinuedStatus(true); //yellow:true
 
         // 7. Inventory ID 7
-        Inventory in7 = new Inventory();
+        COEN352.a1.Inventory in7 = new COEN352.a1.Inventory();
         in7.setID("IN0007");
         in7.setName("Item 7");
         in7.setDescription("Desc 7");
         in7.setUnitPrice(56.00);
-        in7.setQuantityinStock(58);
+        in7.setQuantityInStock(58);
         in7.setInventoryValue(3248.00);
         in7.setReorderLevel(109);
         in7.setReorderTimeDays(7);
@@ -105,12 +103,12 @@ public class WarehouseInventory_SLL {
         in7.setDiscontinuedStatus(false); //grey:false
 
         // 8. Inventory ID 8
-        Inventory in8 = new Inventory();
+        COEN352.a1.Inventory in8 = new COEN352.a1.Inventory();
         in8.setID("IN0008");
         in8.setName("Item 8");
         in8.setDescription("Desc 8");
         in8.setUnitPrice(38.00);
-        in8.setQuantityinStock(101);
+        in8.setQuantityInStock(101);
         in8.setInventoryValue(3838.00);
         in8.setReorderLevel(162);
         in8.setReorderTimeDays(3);
@@ -118,12 +116,12 @@ public class WarehouseInventory_SLL {
         in8.setDiscontinuedStatus(true); //yellow:true
 
         // 9. Inventory ID 9
-        Inventory in9 = new Inventory();
+        COEN352.a1.Inventory in9 = new COEN352.a1.Inventory();
         in9.setID("IN0009");
         in9.setName("Item 9");
         in9.setDescription("Desc 9");
         in9.setUnitPrice(59.00);
-        in9.setQuantityinStock(122);
+        in9.setQuantityInStock(122);
         in9.setInventoryValue(7198.00);
         in9.setReorderLevel(82);
         in9.setReorderTimeDays(3);
@@ -131,12 +129,12 @@ public class WarehouseInventory_SLL {
         in9.setDiscontinuedStatus(false); //grey:false
 
         // 10. Inventory ID 10
-        Inventory in10 = new Inventory();
+        COEN352.a1.Inventory in10 = new COEN352.a1.Inventory();
         in10.setID("IN0010");
         in10.setName("Item 10");
         in10.setDescription("Desc 10");
         in10.setUnitPrice(50.00);
-        in10.setQuantityinStock(175);
+        in10.setQuantityInStock(175);
         in10.setInventoryValue(8750.00);
         in10.setReorderLevel(283);
         in10.setReorderTimeDays(8);
@@ -144,12 +142,12 @@ public class WarehouseInventory_SLL {
         in10.setDiscontinuedStatus(true); //yellow:true
 
         // 11. Inventory ID 11
-        Inventory in11 = new Inventory();
+        COEN352.a1.Inventory in11 = new COEN352.a1.Inventory();
         in11.setID("IN0011");
         in11.setName("Item 11");
         in11.setDescription("Desc 11");
         in11.setUnitPrice(59.00);
-        in11.setQuantityinStock(176);
+        in11.setQuantityInStock(176);
         in11.setInventoryValue(10384.00);
         in11.setReorderLevel(229);
         in11.setReorderTimeDays(1);
