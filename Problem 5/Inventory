@@ -1,117 +1,151 @@
-package COEN352.A2;
+package COEN352.a1;
 
-public class Inventory 
+public class Inventory
 {
-	// data members 
-	private String SKU;
-	private String Name;
-	private String Description;
-	private Double UnitPrice;
-	private Integer QuantityInStock;
-	private Double InventoryValue; 
-	private Integer ReorderQuantity;
-	private Integer ReorderTime;
-	private Integer QuantityInReorder;
-	private Boolean Discontinued; 
-	
-	// Member functions
-	
-	// default constructor
-	Inventory()
-	{
-		
-		SKU = "";
-		Name = "";
-		Description ="";
-		UnitPrice = 0.0;
-		QuantityInStock = 0;
-		InventoryValue = 0.0; 
-		ReorderQuantity = 0;
-		ReorderTime= 0;
-		QuantityInReorder= 0;
-		Discontinued = false; 
-		
-	}
-	
-	// constructor 
-	Inventory(String ID,String N, String Des, Double U, Integer QS, Double InvV, Integer RQ, Integer RT, Integer QR, Boolean D)
-	{
-		
-		SKU = ID;
-		Name = N;
-		Description = Des;
-		UnitPrice = U;
-		QuantityInStock = QS;
-		InventoryValue = InvV; 
-		ReorderQuantity = RQ;
-		ReorderTime= RT;
-		QuantityInReorder= QR;
-		Discontinued = D; 
-	}
-	
-	//GETTERS
-	public String getSKU() { return SKU;}
-		
-	public String getName () { return Name;}
-		
-	public String getDescription() {return Description;}
-	
-	public Double getUnitPrice() { return UnitPrice;}
-		
-	public int getQuantityInStock() { return QuantityInStock;}
-	
-	public double getInventoryValue() {return InventoryValue;}
-		
-	public double ReorderQuantity() {return ReorderQuantity;}
-		
-	public int getReorderTime() {return ReorderTime;}
-		
-	public int getQuantityInReorder() { return QuantityInReorder;}
-		
-	public boolean getDiscontinuedStatus() { return Discontinued;}
-		
-	
-	//SETTERS
-	
-	public void setSKU(String SKU) { this.SKU = SKU; }
-	
-	public void setName(String Name) { this.Name = Name; }
-	
-	public void setDescription(String Description) { this.Description = Description; }
-	
-	public void setUnitPrice(Double PriceUnit) { this.UnitPrice = PriceUnit; }
-		
-	public void setQuantityInStock(int Q) { this.QuantityInStock = Q; }
-	
-	public void setInventoryValue(double Inv) { this.InventoryValue = Inv; }
-	
-	public void setReorderQuantity(int Re) { this.ReorderQuantity = Re; }
-	
-	public void setReorderTime(int Reorder) { this.ReorderTime = Reorder; }
-		
-	public void setQuantityInReorder(int Quant) {this.QuantityInReorder = Quant;}
-	
-	public void setDiscontinuedStatus(boolean disc) {this.Discontinued = disc;}
+    //string data members
+    private String Name, Description, SKU;
 
-	// printing the entries of the inventory
-	
-	public void PrintRecord() 
-	{
-				System.out.println(" \n" 
-									+ " SKU = " + this.SKU + "\n"  
-									+ " Name = " + this.Name+ "\n" 
-									+ " Description = " + this.Description + "\n" 
-									+ " Unit Price ($) = " + this.UnitPrice + "\n" 
-									+ " Quantity in stock = " + this.QuantityInStock + "\n" 
-									+ " Item inventory value ($) = " + this.InventoryValue + "\n" 
-									+ " Reorder Quantity = " + this.ReorderQuantity + "\n" 
-									+ " Reorder Time (days) = " + this.ReorderTime + "\n" 
-									+ " Quantiry in reorder = " + this.QuantityInReorder + "\n"
-				                    + " Is the product discontinued ? = " + this.Discontinued); 						
-	}
+    //double data members $$
+    private Double UnitPrice, InventoryValue;
 
-	public int compareTo(Inventory pivot) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    //int data members
+    private Integer QuantityInStock, ReorderLevel, ReorderTimeDays, QuantityInReorder;
+
+    //true or false boolean data member
+    private Boolean Discontinued;
+
+    // default constructor
+    Inventory()
+    {
+        Name = "";
+        Description ="";
+        UnitPrice = 0.00;
+        QuantityInStock = 0;
+        InventoryValue = 0.00;
+        ReorderLevel = 0;
+        ReorderTimeDays = 0;
+        QuantityInReorder= 0;
+        Discontinued = false;
+        SKU = "";
+    }
+
+    // constructor
+    Inventory(String name, String description, Double unitPrice, Integer qtyStock, Double invVal,
+              Integer reorderLVL, Integer reorderTD, Integer qtyReorder, Boolean disc, String sku)
+    {
+        Name = name;
+        Description = description;
+        UnitPrice = unitPrice;
+        QuantityInStock = qtyStock;
+        InventoryValue = invVal;
+        ReorderLevel = reorderLVL;
+        ReorderTimeDays = reorderTD;
+        QuantityInReorder= qtyReorder;
+        Discontinued = disc;
+        SKU = sku;
+    }
+
+    //SETTERS
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
+    public void setUnitPrice(Double PriceUnit) {
+        this.UnitPrice = PriceUnit;
+    }
+    public void setQuantityInStock(int qtyStock) {
+        this.QuantityInStock = qtyStock;
+    }
+    public void setInventoryValue(double invVal) {
+        this.InventoryValue = invVal;
+    }
+    public void setReorderLevel(int reorderLvl) {
+        this.ReorderLevel = reorderLvl;
+    }
+    public void setReorderTimeDays(int reorderTD) {
+        this.ReorderTimeDays = reorderTD;
+    }
+    public void setQuantityInReorder(int qtyReorder) {
+        this.QuantityInReorder = qtyReorder;
+    }
+    public void setDiscontinuedStatus(boolean disc) {
+        this.Discontinued = disc;
+    }
+    public void setID(String sku) { //SKU corresponds to the Inventory ID
+        this.SKU = sku;
+    }
+
+    //GETTERS
+
+    public String getName () {
+        return Name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public Double getUnitPrice() {
+        return UnitPrice;
+    }
+
+    public int getQuantityInStock() {
+        return QuantityInStock;
+    }
+
+    public double getInventoryValue() {
+        return InventoryValue;
+    }
+
+    public double ReorderQuantity() {
+        return ReorderLevel;
+    }
+
+    public int getReorderTimeDays() {
+        return ReorderTimeDays;
+    }
+
+    public int getQuantityInReorder() {
+        return QuantityInReorder;
+    }
+
+    public boolean getDiscontinuedStatus() {
+        return Discontinued;
+    }
+
+    public String getID() {
+        return SKU;
+    }
+
+    // print function
+
+    public void PrintRecord()
+    {
+        System.out.println("\n---------INVENTORY LIST----------\n"
+                + " SKU/Inventory ID: " + this.SKU
+                + "\n-----------------------------------------\n"
+                + "Name: " + this.Name
+                + "\n-----------------------------------------\n"
+                + "Description: " + this.Description
+                + "\n-----------------------------------------\n"
+                + "Unit Price: $" + this.UnitPrice
+                + "\n-----------------------------------------\n"
+                + "Quantity in stock: " + this.QuantityInStock
+                + "\n-----------------------------------------\n"
+                + "Item inventory value: $" + this.InventoryValue
+                + "\n-----------------------------------------\n"
+                + "Reorder Level: " + this.ReorderLevel
+                + "\n-----------------------------------------\n"
+                + "Reorder Time in Days: " + this.ReorderTimeDays
+                + "\n-----------------------------------------\n"
+                + "Quantity in reorder: " + this.QuantityInReorder
+                + "\n-----------------------------------------\n"
+                + "Discontinued: " + this.Discontinued);
+    }
+
+    public int compareTo(Inventory pivot) {
+        return 0;
+    }
 }
