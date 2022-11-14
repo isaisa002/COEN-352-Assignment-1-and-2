@@ -1,78 +1,82 @@
-package src;
+package coen352.a1;
+
+public class SLLDict<Key, ELEM> implements ADTDictionary<Key, ELEM> {
+
+    private final LinkedList<keyValuePair<Key, ELEM>> dictionary_list;
+
+    //Constructors
+
+    public SLLDict() {
+        dictionary_list = new LinkedList<keyValuePair<Key, ELEM>>();
+    }
+
+
+    //Return element with key value k
+    public ELEM find(Key k) {
+        this.dictionary_list.moveToHead();
+        for (int i = 0; i < this.dictionarySize(); i++) {
+            keyValuePair<Key, ELEM> dict_elem = this.dictionary_list.getElement();
+            if (k == dict_elem.getKey()) {
+                return dict_elem.getElement();
+            }
+            this.dictionary_list.moveToNext();
+        }
+        return null; // "k" does not appear in dictionary
+    }
 
 
 
-/** Source code example for "A Practical Introduction to Data
-Structures and Algorithm Analysis, 3rd Edition (Java)" 
-by Clifford A. Shaffer
-Copyright 2008-2011 by Clifford A. Shaffer
-*/
+
+    //Return dictionary size which is list size
+    public int dictionarySize() {
+        return dictionary_list.numElements();
+    }
 
 
 
-/** Dictionary implemented by unsorted array-based list. */
-public class SLLDictionary<Key, E> implements ADTDictionary<Key, E> {
-	
-	private static final int defaultSize = 100; // Default size
-	
-	private LList<KVpair<Key,E>> list;  // To store dictionary
+    public void insert(Key k, ELEM elem)
+    {
+        keyValuePair<Key, ELEM> dict_elem = new keyValuePair<Key, ELEM>(k, elem);       //create element of dictIonary passed in kv format
+        dictionary_list.append(dict_elem);                                             // add element in dictionary linked list
+    }
 
-	/** Constructors */
-	SLLDictionary() { 
-		this(defaultSize); 
-	}
-	
-	SLLDictionary(int sz){ 
-		list = new LList<KVpair<Key, E>>(sz); 
-	}
-	
-	/** Reinitialize */
-	public void clear() { 
-		list.clear(); 
-	}
-	
-	/** Insert an element: append to list */
-	public void insert(Key k, E e) {
-		KVpair<Key,E> temp = new KVpair<Key,E>(k, e);
-		list.append(temp);
-	}
-	
-	/** Use sequential search to find the element to remove */
-	public E remove(Key k) {
-		E temp = find(k);
-		if (temp != null) 
-			list.remove();
-		return temp;
-	}
-	
-	/** Remove the last element */
-	public E removeAny() {
-		
-		if (size() != 0) {
-		  list.moveToEnd();
-		  list.prev();
-		  KVpair<Key,E> e = list.remove();
-		  return e.value();
-		}
-		else 
-			return null;
-	}
-	
-	/** Find k using sequential search
-	  @return Record with key value k */
-	public E find(Key k) {
-		for(list.moveToStart(); list.currPos() < list.length(); list.next()) {
-		  KVpair<Key,E> temp = list.getValue();
-		  if (k == temp.key())
-		    return temp.value();
-		}
-		return null; // "k" does not appear in dictionary
-	}
-	
-	/** @return List size */
-	public int size() { 
-             //System.out.println(list.toString());
-		return list.length(); 
-	}
-       
+
+
+    public ELEM remove(Key k) {
+        ELEM removeItem = find(k);      //find function return object with key k
+        if (removeItem != null)         // if have found object with key
+            dictionary_list.remove();    // remove element from linked list
+        return removeItem;               // return item removed
+    }
+
+
+
+
+
+
+    public ELEM removeAny() {
+        //remove tail
+
+        if (dictionarySize() != 0) {
+            dictionary_list.moveToTail();                                    // set current to tail
+            keyValuePair<Key, ELEM> removeItem = dictionary_list.remove();   // remove tail and return it to set removeitem to it
+            return removeItem.getElement();                                     // return object / item removed
+        } else
+            return null;
+    }
+
+
+    // Remove all elements
+    public void clear()
+    {
+        dictionary_list.clear();
+    }
+
+
+
+
+
+
+
+
 }
