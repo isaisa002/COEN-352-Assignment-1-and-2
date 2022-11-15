@@ -39,6 +39,7 @@ public class DLLDict<Key,ELEM> implements ADTDictionary<Key, ELEM> {
 
     public void insert(Key k, ELEM elem)
     {
+        System.out.println("insert of dict");
         keyValuePair<Key, ELEM> dict_elem = new keyValuePair<Key, ELEM>(k, elem);       //create element of dictIonary passed in kv format
         dictionary_list.append(dict_elem);
     }
