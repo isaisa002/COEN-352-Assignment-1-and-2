@@ -43,7 +43,7 @@ public class Warehouse_LinkedList{
         // 4. Find a record given a key
         public void findARecord (String SKU)
         {
-                System.out.println("Inventory ID " + wh.find(SKU).getSKU()+ " is in the inventory:");
+                System.out.println("Inventory ID " + wh.find(SKU).getID()+ " is in the inventory:");
                 wh.find(SKU).PrintRecord();
 
         }
