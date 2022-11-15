@@ -144,8 +144,5 @@ public class Inventory
                 + "\n-----------------------------------------\n"
                 + "Discontinued: " + this.Discontinued);
     }
-
-    public int compareTo(Inventory pivot) {
-        return 0;
-    }
+        return 0;    
 }
