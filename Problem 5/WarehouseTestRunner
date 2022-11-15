@@ -22,6 +22,7 @@ public class ListTestRunner {
                 t.testRemove();
                 t.testFind();
                 t.testClear();
+                t.testIndex();
         }
 
 
