@@ -31,7 +31,10 @@ public class Node<ELEM> {
         return next = nextNode;
     }
 
-    ELEM getElement() { return element;}
+    ELEM getElement() {
+        System.out.println("get elem node");
+        return element;
+    }
     ELEM setElement(ELEM elem){
         return element = elem;
     }
