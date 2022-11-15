@@ -231,7 +231,7 @@ public class WarehouseJUnitTest{
         @Test
         public void testIndex() {
         //Test createIndex function + BST
-                                System.out.println("SKU");
+                                System.out.println("\nSKU\n");
 				BSTNode<Inventory> in1 = wh.createIndex("SKU/ID");
 				System.out.println();
 				
