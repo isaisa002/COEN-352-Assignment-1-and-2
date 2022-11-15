@@ -4,20 +4,25 @@ package coen352.a1;
 public class ListTestRunner {
 
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
-        ListTestRunner.runManualTest();
-
-
+                ListTestRunner.runManualTest();
 
 
-    }
 
-    public static void runManualTest() {
-        WarehouseJUnitTest t = new WarehouseJUnitTest();
-        t.setUp();
-       // test did in warehouseJUnitTest
-    }
+
+        }
+
+        public static void runManualTest() {
+                WarehouseJUnitTest t = new WarehouseJUnitTest();
+                t.setUp();
+                // test did in warehouseJUnitTest
+                t.testWarehouseSize();
+                t.testInventoryValue();
+                t.testRemove();
+                t.testFind();
+                t.testClear();
+        }
 
 
 }
