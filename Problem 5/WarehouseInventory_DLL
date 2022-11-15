@@ -7,12 +7,12 @@ public class WarehouseInventory_DLL {
     public static void main(String[] args) {
 
         // object
-        COEN352.a1.WarehouseInventory_DLL wh = new COEN352.a1.WarehouseInventory_DLL();
+        COEN352.a1.WarehouseInventory_DLL wh = new WarehouseInventory_DLL();
 
         // weren't able to read excel file -> storing informations from inventory list using objects and set functions from Inventory.java
 
         // 1. Inventory ID 1
-        COEN352.a1.Inventory in1 = new COEN352.a1.Inventory();
+        Inventory in1 = new Inventory();
         in1.setID("IN0001");
         in1.setName("Item 1");
         in1.setDescription("Desc 1");
@@ -25,7 +25,7 @@ public class WarehouseInventory_DLL {
         in1.setDiscontinuedStatus(true);//yellow:true
 
         // 2. Inventory ID 2
-        COEN352.a1.Inventory in2 = new COEN352.a1.Inventory();
+        Inventory in2 = new Inventory();
         in2.setID("IN0002");
         in2.setName("Item 2");
         in2.setDescription("Desc 2");
@@ -38,7 +38,7 @@ public class WarehouseInventory_DLL {
         in2.setDiscontinuedStatus(true); //yellow:true
 
         // 3. Inventory ID 3
-        COEN352.a1.Inventory in3 = new COEN352.a1.Inventory();
+        Inventory in3 = new Inventory();
         in3.setID("IN0003");
         in3.setName("Item 3");
         in3.setDescription("Desc 3");
@@ -51,7 +51,7 @@ public class WarehouseInventory_DLL {
         in3.setDiscontinuedStatus(false); //grey:false
 
         // 4. Inventory ID 4
-        COEN352.a1.Inventory in4 = new COEN352.a1.Inventory();
+        Inventory in4 = new Inventory();
         in4.setID("IN0004");
         in4.setName("Item 4");
         in4.setDescription("Desc 4");
@@ -64,7 +64,7 @@ public class WarehouseInventory_DLL {
         in4.setDiscontinuedStatus(false); //grey:false
 
         // 5. Inventory ID 5
-        COEN352.a1.Inventory in5 = new COEN352.a1.Inventory();
+        Inventory in5 = new Inventory();
         in5.setID("IN0005");
         in5.setName("Item 5");
         in5.setDescription("Desc 5");
@@ -77,7 +77,7 @@ public class WarehouseInventory_DLL {
         in5.setDiscontinuedStatus(false); //grey:false
 
         // 6. Inventory ID 6
-        COEN352.a1.Inventory in6 = new COEN352.a1.Inventory();
+        Inventory in6 = new Inventory();
         in6.setID("IN0006");
         in6.setName("Item 6");
         in6.setDescription("Desc 6");
@@ -90,7 +90,7 @@ public class WarehouseInventory_DLL {
         in6.setDiscontinuedStatus(true); //yellow:true
 
         // 7. Inventory ID 7
-        COEN352.a1.Inventory in7 = new COEN352.a1.Inventory();
+        Inventory in7 = new Inventory();
         in7.setID("IN0007");
         in7.setName("Item 7");
         in7.setDescription("Desc 7");
@@ -103,7 +103,7 @@ public class WarehouseInventory_DLL {
         in7.setDiscontinuedStatus(false); //grey:false
 
         // 8. Inventory ID 8
-        COEN352.a1.Inventory in8 = new COEN352.a1.Inventory();
+        Inventory in8 = new Inventory();
         in8.setID("IN0008");
         in8.setName("Item 8");
         in8.setDescription("Desc 8");
@@ -116,7 +116,7 @@ public class WarehouseInventory_DLL {
         in8.setDiscontinuedStatus(true); //yellow:true
 
         // 9. Inventory ID 9
-        COEN352.a1.Inventory in9 = new COEN352.a1.Inventory();
+        Inventory in9 = new Inventory();
         in9.setID("IN0009");
         in9.setName("Item 9");
         in9.setDescription("Desc 9");
@@ -129,7 +129,7 @@ public class WarehouseInventory_DLL {
         in9.setDiscontinuedStatus(false); //grey:false
 
         // 10. Inventory ID 10
-        COEN352.a1.Inventory in10 = new COEN352.a1.Inventory();
+        Inventory in10 = new Inventory();
         in10.setID("IN0010");
         in10.setName("Item 10");
         in10.setDescription("Desc 10");
@@ -142,7 +142,7 @@ public class WarehouseInventory_DLL {
         in10.setDiscontinuedStatus(true); //yellow:true
 
         // 11. Inventory ID 11
-        COEN352.a1.Inventory in11 = new COEN352.a1.Inventory();
+        Inventory in11 = new Inventory();
         in11.setID("IN0011");
         in11.setName("Item 11");
         in11.setDescription("Desc 11");
