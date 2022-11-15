@@ -145,6 +145,7 @@ public class Inventory
                 + "Discontinued: " + this.Discontinued);
     }
     
+    //FOR A2
     public int compareTo(Inventory pivot) {
 		return 0;
 	}
