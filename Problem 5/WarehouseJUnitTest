@@ -227,4 +227,45 @@ public class WarehouseJUnitTest{
                 System.out.println("\nTotal value of all the inventories: " + wh.TotalValueOfInventories());
                 System.out.println();
         }
+        
+        @Test
+        public void testIndex() {
+        //Test createIndex function + BST
+                                System.out.println("SKU");
+				BSTNode<Inventory> in1 = wh.createIndex("SKU/ID");
+				System.out.println();
+				
+				System.out.println("\nName\n");
+				BSTNode<Inventory> in2 = wh.createIndex(|Name");
+				System.out.println();
+                                
+				System.out.println("\nDescription\n");
+				BSTNode<Inventory> in3 = wh.createIndex("Description");
+				System.out.println();
+				
+				System.out.println("\nUnit Price\n");
+				BSTNode<Inventory> in4 = wh.createIndex("Unit Price");
+				System.out.println();
+				
+				System.out.println("\nQuantity in Stock\n");
+				BSTNode<Inventory> in5 = wh.createIndex("Quantity in Stock");
+				System.out.println();
+                                
+				System.out.println("\nInventory Value\n");
+				BSTNode<Inventory> in6 = wh.createIndex("Inventory Value");
+				System.out.println();
+				
+				System.out.println("\nReorder Level\n");
+				BSTNode<Inventory> in7 = wh.createIndex("Reorder Level");
+				System.out.println();
+				
+				System.out.println("\nReorder Time in Days\n");
+				BSTNode<Inventory> in8 = wh.createIndex("Reorder Time in Days");
+                                System.out.println();
+				
+				System.out.println("\nQuantity in Reorder\n");
+				BSTNode<Inventory> in9 = wh.createIndex("Quantity in Reorder");
+				System.out.println();
+        
+        }
 }
