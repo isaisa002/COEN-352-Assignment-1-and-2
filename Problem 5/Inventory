@@ -121,7 +121,7 @@ public class Inventory
 
     // print function
 
-    public void PrintRecord()
+    public void PrintAllRecords()
     {
         System.out.println("\n---------INVENTORY LIST----------\n"
                 + " SKU/Inventory ID: " + this.SKU
