@@ -7,7 +7,7 @@ public class WarehouseInventory_DLL {
     public static void main(String[] args) {
 
         // object
-        COEN352.a1.WarehouseInventory_DLL wh = new WarehouseInventory_DLL();
+        WarehouseInventory_DLL wh = new WarehouseInventory_DLL();
 
         // weren't able to read excel file -> storing informations from inventory list using objects and set functions from Inventory.java
 
