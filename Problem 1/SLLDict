@@ -7,6 +7,7 @@ public class SLLDict<Key, ELEM> implements ADTDictionary<Key, ELEM> {
     //Constructors
 
     public SLLDict() {
+        System.out.println("Slldict constructor");
         dictionary_list = new LinkedList<keyValuePair<Key, ELEM>>();
     }
 
@@ -36,6 +37,7 @@ public class SLLDict<Key, ELEM> implements ADTDictionary<Key, ELEM> {
 
     public void insert(Key k, ELEM elem)
     {
+        System.out.println("insert of dict");
         keyValuePair<Key, ELEM> dict_elem = new keyValuePair<Key, ELEM>(k, elem);       //create element of dictIonary passed in kv format
         dictionary_list.append(dict_elem);                                             // add element in dictionary linked list
     }
@@ -58,6 +60,7 @@ public class SLLDict<Key, ELEM> implements ADTDictionary<Key, ELEM> {
         //remove tail
 
         if (dictionarySize() != 0) {
+            System.out.println("remove any if ");
             dictionary_list.moveToTail();                                    // set current to tail
             keyValuePair<Key, ELEM> removeItem = dictionary_list.remove();   // remove tail and return it to set removeitem to it
             return removeItem.getElement();                                     // return object / item removed
@@ -69,6 +72,7 @@ public class SLLDict<Key, ELEM> implements ADTDictionary<Key, ELEM> {
     // Remove all elements
     public void clear()
     {
+        System.out.println("clear of dict");
         dictionary_list.clear();
     }
 
