@@ -1,25 +1,25 @@
 public class Warehouse_LinkedList{
 
         //data members
-        private double valAllInv; 
-        private int nbInvDatabase; 
-        private SLLDict<String, COEN352.a1.Inventory> wh;  
+        private double valAllInv;
+        private int nbInvDatabase;
+        private SLLDict<String, COEN352.a1.Inventory> wh;
 
         //constructor
         Warehouse_LinkedList()
         {
                 wh = new SLLDict<String, COEN352.a1.Inventory>();
-                valAllInv = 0.0;
+                valAllInv = 0.00;
                 nbInvDatabase = 0;
         }
-        
 //FUNCTIONS
         // 1. Insert a record
         public void InsertARecord (COEN352.a1.Inventory in)
         {
                 wh.insertRec(in.getSKU(),in);
                 valAllInv += in.getInventoryValue();
-                nbInvDatabase++;
+                nbInvDatabase++; //increment
+                System.out.println("Record" + in + " was added.");
         }
 
         // 2. Remove a record given a key
@@ -27,8 +27,9 @@ public class Warehouse_LinkedList{
         {
                 valAllInv -= wh.findRec(key).getInventoryValue() ;
                 wh.removeRec(key);
-                nbInvDatabase--;
-                System.out.println(" Inventory ID " + key + " was removed.");
+                
+                nbInvDatabase--; //decrement
+                System.out.println("Record " + key + " was removed.");
 
         }
 
@@ -43,7 +44,7 @@ public class Warehouse_LinkedList{
         // 4. Find a record given a key
         public void findARecord (String SKU)
         {
-                System.out.println("Inventory ID " + wh.find(SKU).getID()+ " is in the inventory:");
+                System.out.println("Record " + wh.find(SKU).getSKU()+ " is in the inventory:");
                 wh.find(SKU).PrintRecord();
 
         }
