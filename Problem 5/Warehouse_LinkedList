@@ -119,15 +119,15 @@ public class Warehouse_LinkedList{
 
 }
 
-     //PROBLEM 2
+ //PROBLEM 2
         public String query(String attribute, double perct) {
 
                 COEN352.a1.Inventory[] inventories = new COEN352.a1.Inventory[wh.length()];
-                inventories = CreateIndex(attribute);
+                inventories = createIndex(attribute);
 
                 //pivot = lower bound of (N * perct)
                 double pivot = Math.floor(wh.length()*perct);
 
-                return inventories[(int) pivot].PrintAllRecords();
+                return inventories[pivot].PrintAllRecords();
         }
 }
