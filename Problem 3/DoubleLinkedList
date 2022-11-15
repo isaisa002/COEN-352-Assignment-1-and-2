@@ -17,7 +17,7 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
         tail = new DoubleNode<ELEM>(head, null); // head <- tail
         head.setNext(tail); //head -> tail
         nodeCount=0;
-        System.out.println("dll constructor");
+
 
     }
 
@@ -37,12 +37,17 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
         head.setNext(null);    //Disconnect head to other node
 
+
+
+
         //Remove any link to other node
         // Create a new head with no data like in constructor
         current = head = new DoubleNode<ELEM>(null,null);
         tail = new DoubleNode<ELEM>(head, null); // head <- tail
         head.setNext(tail); //head -> tail
         nodeCount=0;
+
+
 
 
     }
@@ -53,31 +58,35 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
 
 
-
         if(this.numElements()==0)            // if list is empty
         {
-            System.out.println("insert 1");
+
+            System.out.println("insert "+element+" in empty list");
+
             //new node with the element passed and null as next node
             DoubleNode<ELEM> newNode = new DoubleNode<ELEM>(element,null,null);
             head = newNode;
             current = head;                                             // this.current = head = new node
             tail = current.getNext();                                     // this.tail = current.next = null
-            this.moveToNext();
+
+
         }
         else
         {
             if(current.getNext()==null)                                  // if want to insert at the end of list
             {
-                System.out.println("insert 2");
+                System.out.println("insert "+element+" at end list");
                 current.setNext(new DoubleNode<ELEM>(element,current,null));    // set next of current to a new node with wanted parameters
                 tail = current.getNext();                                // this.tail = new node
-                this.moveToNext();                                       //this.current = new node
             }
             else
             {
-                System.out.println("insert 3");
+
+
+
                 DoubleNode<ELEM> temp = current;                         // temp is a copy of current pointer & is set to node that current is pointing to
-                this.moveToNext();                                 // move current to its next node and temp is still pointing at old current
+                System.out.println("insert "+element+" at position "+getcurrPosition());
+                current = current.getNext();
                 DoubleNode<ELEM> newNode = new DoubleNode<ELEM>(element,temp,current); // old current (temp) <- new node -> new current
                 temp.setNext(newNode);                                // old current <-> new node -> new current
                 current.setPrevious(newNode);                        // old current <-> new node <-> new current
@@ -93,39 +102,36 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
         DoubleNode<ELEM> newNode = new DoubleNode<>(element, this.tail,null);
 
-        if(this.tail != null)
-        {
-            this.tail.setNext(newNode);
-        }
 
-        if (this.head == null)
-        {
-            this.head = newNode;
-        }
 
-        if (this.current == null)
-        {
-            this.current = this.head;
-        } else {
-            this.current = newNode;
-        }
+
+            if (this.tail != null) {
+
+                System.out.println("append tail !=null");
+                this.tail.setNext(newNode);
+                tail = newNode;
+            }
+
+            if (this.head == null) {
+                System.out.println("append head = =null");
+
+                this.head = newNode;
+                tail = newNode;
+            }
+
+            if (this.current == null) {
+                System.out.println("append current = =null");
+
+                this.current = this.head;
+            } else {
+                System.out.println("append else current = =null");
+
+                this.current = tail;
+            }
+
 
         nodeCount++;
 
-
-
-
-
-
-
-/*
-        // old tail.previous <- new <- -> tail
-        tail.setPrevious(new DoubleNode<ELEM>(element,tail.getPrevious(),tail));
-
-        // old tail.previous <- -> new <- -> tail
-        tail.getPrevious().getPrevious().setNext(tail.getPrevious());
-        nodeCount++;
-        */
 
     }
 
@@ -163,9 +169,15 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
             //current.previous (moving index) --- current (item to remove) ---> current.next
             movingIndex.setNext(current.getNext());
-            //current.previous (moving index) <---- current (item to remove) ---> current.next
-            current.getNext().setPrevious(movingIndex);
 
+
+            if(current.getNext() != null) {
+                //current.previous (moving index) <---- current (item to remove) ---> current.next
+                current.getNext().setPrevious(movingIndex);
+                this.moveToNext();
+            }else {
+                current = movingIndex;
+            }
         }
         nodeCount--;
         return removedItem;
@@ -174,7 +186,7 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
     //Set the current position to the start of the list (head)
     public void moveToHead(){
-        System.out.println("mth");
+        System.out.println("move to head dll");
         current = head;
     }
 
@@ -196,7 +208,7 @@ current=tail;
     public void moveToNext(){
         if(current!= tail){
             current=current.getNext();
-            System.out.println("mtn if");
+
         }
 
     }
@@ -209,13 +221,14 @@ current=tail;
     //return The position of the current element. */
 
     public int getcurrPosition(){
-        System.out.println("get curr pos");
+
         DoubleNode<ELEM> movingIndex = head;
 
         int i;
         for(i=0; current!= movingIndex; i++) {
             movingIndex = movingIndex.getNext();
         }
+
         return i;
     }
 
@@ -232,12 +245,11 @@ current=tail;
     //return The current element. */
     public ELEM getElement(){
         if (current == null) {
-            System.out.println("get elem null");
             return null;
 
         }
 
-        System.out.println("get elm");
+
         return current.getElement();
     }
 
