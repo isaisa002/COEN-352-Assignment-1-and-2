@@ -58,5 +58,66 @@ public class Warehouse_LinkedList{
         public double TotalValueOfInventories() {
                 return valAllInv;
         }
+        
+        //ASSIGNMENT 2
+        //PROBLEM 1
+        public int[] createIndex() {
+                LinkedList<keyValuePair<Key, ELEM>> dictionary_list = new ArrayList<>();
+                int i = 0;
+                for ( this.A.moveToHead(); this.A.getcurrposition() != null; this.A.getnext())
+                {
+                        dictionary_list.add(new <keyValuePair<Key, ELEM>(
+                                (Key) Integer.valueOf(i), this.A.getcurrposition().getData().value())); //transforms i to key
+                        i++;
+                }
+
+                QuickSort(dictionary_list, 0, A.length() - 1);
+                int[] index = new int[i];
+                i = 0;
+                for (KVpair<keyValuePair<Key, ELEM> kVpair : dictionary_list) {
+                        index[i] = (int)kv.Key();
+                        i++;
+                }
+                return index;
+        }
+
+        public void QuickSort (LinkedList<keyValuePair<Key, ELEM>> A, int l, int r) {
+
+                int pivotindex = findpivot(A, l, r); // Pick a pivot
+                DSutil.swap(A, pivotindex, r);       // Stick pivot at end
+                int k; //k
+                if (r > l) {
+                        k = partition(A, l, r);
+                        if ((k-l) > 1)
+                                QuickSort(A, l, k-1);   // Sort left partition
+                        if ((r-k) > 1)
+                                QuickSort(A, k+1, r);   // Sort right partition
+                }
+        }
+
+        int partition(LinkedList<keyValuePair<Key, ELEM>> A, int l, int r) {
+                E part = A.get(l).value();
+                int i = l;
+                int j = r;
+                        while (A.get(i++).value().compareTo(part) < 0)
+                                if (i >= r)
+                                        break;
+                        while (A.get(--j).value().compareTo(oart) > 0)
+                                if (j <= l)
+                                        break;
+                        if (i >= j)
+                                break;
+                        else
+                                DSUtil.swap(A, i, j);
+
+
+                if (j == i)
+                        return j;
+                DSUtil.swap(A, i, j);
+                return j;
+        }
+
+}
+
 
 }
