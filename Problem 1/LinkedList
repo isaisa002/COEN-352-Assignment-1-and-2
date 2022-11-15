@@ -18,6 +18,7 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
 
     public LinkedList() {
 
+        System.out.println("LL constructor");
         //Create a node that doesn't have data in it
         current = tail = head = new Node<ELEM>(null);
         nodeCount = 0;
@@ -50,6 +51,7 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
 
        if(this.numElements()==0)                                           // if list is empty
        {
+          System.out.println("insert "+element+" in empty list");
            Node<ELEM> newNode = new Node<ELEM>(element, null);    //new node with the element passed and null as next node
            head = newNode;                                               // this.head = new node
            current = head;                                               // this.current = head = new node
@@ -60,26 +62,27 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
 
            if(current.getNext()==null)                                  // if wanna insert at the end of list
            {
+               System.out.println("insert "+element+" at end list");
                current.setNext(new Node<ELEM>(element,null));    // set next of current to a new node with element and null as next node
                tail = current.getNext();                                // this.tail = new node
-               this.moveToNext();                                       //this.current = new node
+
+
            }
            else
            {
+
                Node<ELEM> temp = current;                         // temp is a copy of current pointer & is set to node that current is pointing to
-               this.moveToNext();                                 // move current to its next node and temp is still pointing at old current
+               System.out.println("insert "+element+" at position "+getcurrPosition());
+               current = current.getNext();
                Node<ELEM> newNode = new Node<ELEM>(element,current); // new node with element we want to add with next of old current as its next
-               temp.setNext(newNode);                                // old current -> new node -> new current (old current next)
+               temp.setNext(newNode);                             // old current -> new node -> new current (old current next)
+
            }
        }
 
 
 
 
-        //if insert at the end of list, set the tail as the node added
-        if (tail == current) {
-            tail = current.getNext();
-        }
         nodeCount++;
 
     }
@@ -87,8 +90,25 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
     //insert the element at the end of list
     @Override
     public void append(ELEM element) {
+
+        /*
+        System.out.println("append");
         tail = tail.setNext(new Node<ELEM>(element, null));
         nodeCount++;
+        */
+
+
+        if(head.getNext()==null)
+        {
+            System.out.println("append if");
+            insert(element);
+
+        }else {
+            System.out.println("append else");
+            tail = tail.setNext(new Node<ELEM>(element, null));
+            nodeCount++;
+        }
+
     }
 
     @Override
@@ -140,6 +160,13 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
 
     @Override
     public void moveToTail() {
+
+        if(tail==null)
+        {
+            System.out.println("tail = = null");
+        }else{
+            System.out.println("tail is "+ tail.getElement());
+        }
         current = tail;
     }
 
@@ -159,8 +186,9 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
 
     @Override
     public void moveToNext() {
-        if (current != tail)
-            current.setNext(current.getNext());
+        if (current != tail) {
+            current = current.getNext();
+        }
     }
 
 
@@ -178,6 +206,7 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
         for (i = 0; current != movingIndex; i++) {
             movingIndex = movingIndex.getNext();
         }
+        System.out.println("Current position is "+i);
         return i;
     }
 
@@ -194,13 +223,13 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
 
     @Override
     public ELEM getElement() {
-        if (current.getNext() == null) return null;
         return current.getElement();
     }
 
 
     public String toString() {
 
+        System.out.println("to string of list");
         // Save the current position of the list
         int oldPos = getcurrPosition();
         int numElements = numElements();
@@ -212,13 +241,16 @@ public class LinkedList<ELEM> implements ADTList<ELEM> {
             out.append(getElement());
             out.append(" ");
             moveToNext();
+
         }
         out.append("| ");
         for (int i = oldPos; i < numElements; i++) {
             out.append(getElement());
             out.append(" ");
             moveToNext();
+
         }
+
         out.append(">");
         setCurrPosition(oldPos); // Reset the fence to its original position
         return out.toString();
