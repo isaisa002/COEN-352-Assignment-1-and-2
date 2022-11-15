@@ -1,86 +1,101 @@
-package coen352.ch4.dictionary;
-
-import static org.junit.jupiter.api.Assertions.*;
+package coen352.a1;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+
+
 public class DictionaryJUnitTest {
-	
-	
-	private static ADTDictionary<Integer, String> dict;
-	  
-	@BeforeAll
-	public static void setUp() {
-		dict = new ALDictionary<Integer, String>(10);
-		//dict = new LLDictionary<String, InventoryRecord>(10);
-		
-	}
 
-	@Test
-	void testClear() {
-		dict.clear();
-		assertEquals(0, dict.size(), "clear failed, size is non zero");
-	}
 
-	@Test
-	void testInsert() {
-		dict.clear();
-		dict.insert(0, "red");
-		dict.insert(1, "blue");
-		dict.insert(2,"yellow");
-		dict.insert(3, "grey");
-		assertEquals(4, dict.size(), "insert failed, size is not as expected");
-	}
+    private static ADTDictionary<Integer, String> dict;
 
-	@Test
-	void testRemove() {
-		
-		dict.clear();
-		dict.insert(0, "red");
-		dict.insert(1, "blue");
-		dict.insert(2,"yellow");
-		dict.insert(3, "grey");
-		dict.remove(0);
-		
-		//assertEquals("1:blue , 2:yellow , 3:grey ,", dict.toString());
-		
-		assertEquals("grey", dict.find(3), "remove failed"); 
-		
-	}
+    @BeforeAll
+    public static void setUp() {
+        System.out.println("setup of test");
+        dict = new SLLDict<Integer, String>();
 
-	@Test
-	void testRemoveAny() {
-		dict.clear();
-		dict.insert(0, "red");
-		dict.insert(1, "blue");
-		dict.insert(2,"yellow");
-		dict.insert(3, "grey");
-		assertNotEquals("grey", dict.removeAny(), "removeAny failed"); 
-		
-		
-	}
+    }
 
-	@Test
-	void testFind() {
-		
-		dict.clear();
-		dict.insert(0, "red");
-		dict.insert(1, "blue");
-		dict.insert(2,"yellow");
-		dict.insert(3, "grey");
-		
-		assertEquals("grey", dict.find(3), "find failed"); 
-	}
+    @Test
+    void testClear() {
 
-	@Test
-	void testSize() {
-		dict.clear();
-		dict.insert(0, "red");
-	
-		
-		assertEquals(1, dict.size(), "size failed, size is not as expected");
-	}
+        dict.clear();
+        assertEquals(0, dict.dictionarySize(), "clear failed, size is non zero");
+        System.out.println("test clear ok");
+    }
+
+    @Test
+    void testInsert() {
+       System.out.println("TEST INSERT");
+        dict.clear();
+        dict.insert(0, "red");
+        dict.insert(1, "blue");
+        dict.insert(2,"yellow");
+        dict.insert(3, "grey");
+        assertEquals(4, dict.dictionarySize(), "insert failed, size is not as expected");
+        System.out.println("TEST INSERT OK");
+
+    }
+
+    @Test
+    void testRemove() {
+        System.out.println("TEST REMOVE");
+
+        dict.clear();
+        dict.insert(0, "red");
+        dict.insert(1, "blue");
+        dict.insert(2,"yellow");
+        dict.insert(3, "grey");
+        dict.remove(0);
+
+        //assertEquals("1:blue , 2:yellow , 3:grey ,", dict.toString());
+
+        assertEquals("grey", dict.find(3), "remove failed");
+        System.out.println("find assert ok");
+
+        System.out.println("TEST REMOVE OK");
+
+    }
+
+    @Test
+    void testRemoveAny() {
+        dict.clear();
+        dict.insert(0, "red");
+        dict.insert(1, "blue");
+        dict.insert(2,"yellow");
+        dict.insert(3, "grey");
+        assertNotEquals("3:grey", dict.removeAny(), "removeAny failed");
+
+
+    }
+
+    @Test
+    void testFind() {
+
+        System.out.println("TEST FIND");
+        dict.clear();
+        dict.insert(0, "red");
+        dict.insert(1, "blue");
+        dict.insert(2,"yellow");
+        dict.insert(3, "grey");
+
+        assertEquals("grey", dict.find(3), "find failed");
+        System.out.println("TEST FIND OK");
+
+    }
+
+    @Test
+    void testSize() {
+        dict.clear();
+        dict.insert(0, "red");
+
+
+        assertEquals(1, dict.dictionarySize(), "size failed, size is not as expected");
+    }
 
 }
+
