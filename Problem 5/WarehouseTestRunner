@@ -1,0 +1,23 @@
+package coen352.a1;
+
+
+public class ListTestRunner {
+
+
+    public static void main(String[] args) {
+
+        ListTestRunner.runManualTest();
+
+
+
+
+    }
+
+    public static void runManualTest() {
+        WarehouseJUnitTest t = new WarehouseJUnitTest();
+        t.setUp();
+       // test did in warehouseJUnitTest
+    }
+
+
+}

@@ -2,13 +2,15 @@ package COEN352.a1;
 import java.util.Arrays;
 import java.lang.Math;
 
-public class WarehouseInventory_DLL {
+public class WarehouseJUnitTest{
 
-    public static void main(String[] args) {
+    
 
-        // object
-        WarehouseInventory_DLL wh = new WarehouseInventory_DLL();
-
+   
+       private static Warehouse_LinkedList wh = Warehouse_LinkedList();
+        
+ public static void setUp()
+ {
         // weren't able to read excel file -> storing informations from inventory list using objects and set functions from Inventory.java
 
         // 1. Inventory ID 1
@@ -174,14 +176,17 @@ public class WarehouseInventory_DLL {
         wh.InsertARecord(in9);
         wh.InsertARecord(in10);
         wh.InsertARecord(in11);
-        System.out.println("\nInserting new records\n");
-        System.out.println(" Inserted records in the database are: " + in1.getSKU() + in4.getSKU);
-        wh.InsertARecord(in1);
-        wh.InsertARecord(in4);
-
+ }
+       
+        
+public void testWarehouseSize()
+{
         // test inventories in the database function after inserting new records
         System.out.println("\nNumber of inventories in the database: " + wh.InventoriesInDatabase());
-
+}
+       
+       
+       
         // test total value of all the inventories function after inserting new records
         System.out.println("\nTotal value of all the inventories: " + wh.TotalValueOfInventories());
         System.out.println();
@@ -215,5 +220,5 @@ public class WarehouseInventory_DLL {
         // test total value of all the inventories function after inserting new records
         System.out.println("\nTotal value of all the inventories: " + wh.TotalValueOfInventories());
         System.out.println();
-    }
+    
 }
