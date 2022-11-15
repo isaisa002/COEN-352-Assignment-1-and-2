@@ -18,7 +18,7 @@ public class ListTestRunner {
         ListJUnitTest.setUp();
        // t.testAppend();
         t.testFind();
-       // t.testListOfObjects();
+        t.testListOfObjects();
         //t.testNext();
         //t.testRemove();
         //t.testNext();
