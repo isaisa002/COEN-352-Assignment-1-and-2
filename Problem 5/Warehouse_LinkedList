@@ -1,22 +1,61 @@
 public class Warehouse_LinkedList{
 
-//constructor
-Warehouse_LinkedList()
-{
+        //data members
+        private double valAllInv; 
+        private int nbInvDatabase; 
+        private SLLDict<String, COEN352.a1.Inventory> wh;  
 
-}
+        //constructor
+        Warehouse_LinkedList()
+        {
+                wh = new SLLDict<String, COEN352.a1.Inventory>();
+                valAllInv = 0.0;
+                nbInvDatabase = 0;
+        }
+        
+//FUNCTIONS
+        // 1. Insert a record
+        public void InsertARecord (COEN352.a1.Inventory in)
+        {
+                wh.insertRec(in.getSKU(),in);
+                valAllInv += in.getInventoryValue();
+                nbInvDatabase++;
+        }
 
+        // 2. Remove a record given a key
+        public void RemoveARecord(String key)
+        {
+                valAllInv -= wh.findRec(key).getInventoryValue() ;
+                wh.removeRec(key);
+                nbInvDatabase--;
+                System.out.println(" Inventory ID " + key + " was removed.");
 
+        }
 
+        // 3. Clear the database (removeAll)
+        public void clearDatabase()
+        {
+                //set all to 0
+                wh.removeAll();
+                nbInvDatabase = 0;
+                valAllInv = 0;
+        }
+        // 4. Find a record given a key
+        public void findARecord (String SKU)
+        {
+                System.out.println("Inventory ID " + wh.find(SKU).getSKU()+ " is in the inventory:");
+                wh.find(SKU).PrintRecord();
 
+        }
 
+        // 5. Return the number of inventories in the database
+        public int InventoriesInDatabase() {
+                return nbInvDatabase;
+        }
 
-
-
-
-
-
-
-
+        // 6. Return the total value of all inventories
+        public double TotalValueOfInventories() {
+                return valAllInv;
+        }
 
 }
