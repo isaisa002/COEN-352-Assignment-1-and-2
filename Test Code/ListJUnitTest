@@ -10,7 +10,7 @@ public class ListJUnitTest {
 
 
     private static ADTList<Integer> L1;
-    // private static ADTList<Integer> L2;
+
     private static ADTList<Object> L3;
 
 
@@ -35,29 +35,7 @@ public class ListJUnitTest {
             if (k == L.getElement()) return true;    // Found k
         return false;                            // k not found
     }
-    /*
-        @Test
-        public void testRemove()
-        {
-            L2.clear();
-            L2.append(1);
-            assertEquals("< | 1 >", L2.toString());
-            assertEquals(1, (int)L2.remove());
-            assertEquals("< | >", L2.toString());
-            assertEquals(null, L2.remove());
-        }
 
-        @Test
-        public void testAppend()
-        {
-            L2.clear();
-            L2.append(10);
-            assertEquals("< | 10 >", L2.toString());
-            L2.append(20);
-            L2.append(15);
-            assertEquals("< | 10 20 15 >", L2.toString());
-        }
-    */
     @Test
     public void testFind()
     {
@@ -94,27 +72,5 @@ public class ListJUnitTest {
         System.out.println("All tests for Double linked list were successful");
 
     }
-/*
-    @Test
-    public void testNext() {
-        L2.append(10);
-        L2.append(20);
-        L2.append(15);
-        L2.moveToStart();
-        L2.next();
-        assertEquals(20, (int)L2.getValue());
-    }
 
-    @Test
-    public void testMore() {
-        L2.clear();
-        L2.moveToStart();
-        L2.insert(1);
-        L2.insert(2);
-        L2.moveToPos(2);
-        L2.insert(3);
-        L2.clear();
-        assertEquals("< | >", L2.toString());
-    }
-*/
 }

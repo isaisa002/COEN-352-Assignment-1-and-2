@@ -61,7 +61,7 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
         if(this.numElements()==0)            // if list is empty
         {
 
-            System.out.println("insert "+element+" in empty list");
+
 
             //new node with the element passed and null as next node
             DoubleNode<ELEM> newNode = new DoubleNode<ELEM>(element,null,null);
@@ -75,7 +75,6 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
         {
             if(current.getNext()==null)                                  // if want to insert at the end of list
             {
-                System.out.println("insert "+element+" at end list");
                 current.setNext(new DoubleNode<ELEM>(element,current,null));    // set next of current to a new node with wanted parameters
                 tail = current.getNext();                                // this.tail = new node
             }
@@ -85,7 +84,6 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
 
                 DoubleNode<ELEM> temp = current;                         // temp is a copy of current pointer & is set to node that current is pointing to
-                System.out.println("insert "+element+" at position "+getcurrPosition());
                 current = current.getNext();
                 DoubleNode<ELEM> newNode = new DoubleNode<ELEM>(element,temp,current); // old current (temp) <- new node -> new current
                 temp.setNext(newNode);                                // old current <-> new node -> new current
@@ -107,24 +105,24 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
             if (this.tail != null) {
 
-                System.out.println("append tail !=null");
+
                 this.tail.setNext(newNode);
                 tail = newNode;
             }
 
             if (this.head == null) {
-                System.out.println("append head = =null");
+
 
                 this.head = newNode;
                 tail = newNode;
             }
 
             if (this.current == null) {
-                System.out.println("append current = =null");
+
 
                 this.current = this.head;
             } else {
-                System.out.println("append else current = =null");
+
 
                 this.current = tail;
             }
@@ -186,7 +184,7 @@ public class DoubleLinkedList<ELEM> implements ADTList<ELEM> {
 
     //Set the current position to the start of the list (head)
     public void moveToHead(){
-        System.out.println("move to head dll");
+
         current = head;
     }
 

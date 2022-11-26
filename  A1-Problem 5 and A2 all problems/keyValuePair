@@ -1,0 +1,47 @@
+package coen352.a1;
+
+//class to store object in <K,V> format
+
+   public class keyValuePair<Key, ELEM extends Comparable<ELEM>> implements Comparable<keyValuePair<Key, ELEM>>
+   {
+       private final Key k;
+       private final ELEM element;
+
+       //Constructors
+
+       keyValuePair() {
+           k = null;
+           element = null;
+       }
+
+       keyValuePair(Key k, ELEM element) {
+
+           this.k = k;
+           this.element = element;
+       }
+
+
+
+       public String toString() {
+
+           return k + ":" + element + ",";
+       }
+
+
+       //get functions
+
+       public Key getKey() {
+           return k;
+       }
+
+       public ELEM getElement() {
+
+           return element;
+       }
+
+       public int compareTo(keyValuePair o) {
+           return o.element.compareTo(this.element);
+       }
+
+
+   }

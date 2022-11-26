@@ -1,0 +1,66 @@
+package coen352.a1;
+
+
+public class ListTestRunner {
+
+
+        public static void main(String[] args) {
+
+                ListTestRunner.runManualTest();
+
+
+package coen352.a1;
+
+public class WarehouseTestRunner {
+
+
+    public static void main(String[] args) {
+
+        WarehouseTestRunner.runManualTest();
+
+
+
+
+    }
+
+    public static void runManualTest() {
+        WarehouseJUnitTest t = new WarehouseJUnitTest();
+        WarehouseJUnitTest.setUp();
+        // test did in warehouseJUnitTest
+        t.testInsert();
+        t.testWarehouseSize();
+        t.testInventoryValue();
+
+         t.testQ11();
+        //t.testQ12();
+        t.testQuery();
+
+
+        t.testRemove();
+        t.testFind();
+        t.testClear();
+
+
+
+    }
+
+
+}
+
+
+        }
+
+        public static void runManualTest() {
+                WarehouseJUnitTest t = new WarehouseJUnitTest();
+                t.setUp();
+                // test did in warehouseJUnitTest
+                t.testWarehouseSize();
+                t.testInventoryValue();
+                t.testRemove();
+                t.testFind();
+                t.testClear();
+                t.testIndex();
+        }
+
+
+}

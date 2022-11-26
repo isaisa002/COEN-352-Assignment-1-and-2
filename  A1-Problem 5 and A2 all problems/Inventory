@@ -1,7 +1,6 @@
-package COEN352.a1;
+package coen352.a1;
 
-public class Inventory
-{
+public class Inventory implements Comparable<Inventory> {
     //string data members
     private String Name, Description, SKU;
 
@@ -73,12 +72,11 @@ public class Inventory
     public void setDiscontinuedStatus(boolean disc) {
         this.Discontinued = disc;
     }
-    public void setID(String sku) { //SKU corresponds to the Inventory ID
+    public void setSKU(String sku) { //SKU corresponds to the Inventory ID
         this.SKU = sku;
     }
 
     //GETTERS
-
     public String getName () {
         return Name;
     }
@@ -99,7 +97,7 @@ public class Inventory
         return InventoryValue;
     }
 
-    public double ReorderQuantity() {
+    public double getReorderLevel() {
         return ReorderLevel;
     }
 
@@ -115,38 +113,61 @@ public class Inventory
         return Discontinued;
     }
 
-    public String getID() {
+    public String getSKU() {
         return SKU;
     }
 
     // print function
 
-    public void PrintAllRecords()
+    public void PrintRecord()
     {
-        System.out.println("\n---------INVENTORY LIST----------\n"
-                + " SKU/Inventory ID: " + this.SKU
-                + "\n-----------------------------------------\n"
+        System.out.println("\n       INVENTORY LIST        \n"
+                + "SKU: " + this.SKU
+                + "\n"
                 + "Name: " + this.Name
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Description: " + this.Description
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Unit Price: $" + this.UnitPrice
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Quantity in stock: " + this.QuantityInStock
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Item inventory value: $" + this.InventoryValue
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Reorder Level: " + this.ReorderLevel
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Reorder Time in Days: " + this.ReorderTimeDays
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Quantity in reorder: " + this.QuantityInReorder
-                + "\n-----------------------------------------\n"
+                + "\n"
                 + "Discontinued: " + this.Discontinued);
     }
-    
-    //FOR A2
-    public int compareTo(Inventory pivot) {
-		return 0;
-	}
+
+    public String printRecordstr()
+    {
+        return ("\n       INVENTORY LIST        \n"
+                + "SKU: " + this.SKU
+                + "\n"
+                + "Name: " + this.Name
+                + "\n"
+                + "Description: " + this.Description
+                + "\n"
+                + "Unit Price: $" + this.UnitPrice
+                + "\n"
+                + "Quantity in stock: " + this.QuantityInStock
+                + "\n"
+                + "Item inventory value: $" + this.InventoryValue
+                + "\n"
+                + "Reorder Level: " + this.ReorderLevel
+                + "\n"
+                + "Reorder Time in Days: " + this.ReorderTimeDays
+                + "\n"
+                + "Quantity in reorder: " + this.QuantityInReorder
+                + "\n"
+                + "Discontinued: " + this.Discontinued);
+    }
+
+    public int compareTo(Inventory in) {
+        return 0;
+    }
 }

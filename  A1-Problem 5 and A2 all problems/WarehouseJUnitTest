@@ -1,0 +1,182 @@
+package coen352.a1;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
+public class WarehouseJUnitTest{
+
+
+    private static Warehouse_LinkedList wh = new Warehouse_LinkedList();
+    @BeforeAll
+    public static void setUp() {
+        wh.clearDatabase();
+    }
+
+
+
+    @Test
+    void testInsert() {
+        // weren't able to read excel file -> storing informations from inventory list using objects and set functions from Inventory.java
+
+
+        // 1. Inventory ID 1
+        Inventory in1 = new Inventory("Item 1", "Desc 1", 51.00, 25, 1275.00, 29, 13, 50, true, "IN0001");
+        // 2. Inventory ID 2
+        Inventory in2 = new Inventory("Item 2", "Desc 2", 93.00, 132, 12276.00, 231, 4, 50, true, "IN0002");
+        // 3. Inventory ID 3
+        Inventory in3 = new Inventory("Item 3", "Desc 3", 57.00, 151, 8607.00, 114, 11, 150, false, "IN0003");
+        // 4. Inventory ID 4
+        Inventory in4 = new Inventory("Item 4", "Desc 4", 19.00, 186, 3534.00, 158, 6, 50, false, "IN0004");
+        // 5. Inventory ID 5
+        Inventory in5 = new Inventory("Item 5", "Desc 5", 75.00, 62, 4650.00, 39, 12, 50, false, "IN0005");
+        // 6. Inventory ID 6
+        Inventory in6 = new Inventory("Item 6", "Desc 6", 11.00, 5, 55.00, 9, 13, 150, true, "IN0006");
+        // 7. Inventory ID 7
+        Inventory in7 = new Inventory("Item 7", "Desc 7", 56.00, 58, 3248.00, 109, 7, 100, false, "IN0007");
+        // 8. Inventory ID 8
+        Inventory in8 = new Inventory("Item 8", "Desc 8", 38.00, 101, 3838.00, 162, 3, 100, true, "IN0008");
+        // 9. Inventory ID 9
+        Inventory in9 = new Inventory("Item 9", "Desc 9", 59.00, 122, 7198.00, 82, 3, 150, false, "IN0009");
+        // 10. Inventory ID 10
+        Inventory in10 = new Inventory("Item 10", "Desc 10", 50.00, 175, 8750.00, 283, 8, 150, true, "IN00010");
+        // 11. Inventory ID 11
+        Inventory in11 = new Inventory("Item 11", "Desc 11", 59.00, 176, 10384.00, 229, 1, 100, true, "IN00011");
+
+
+        // test insert function
+        System.out.println("\nInserting new values\n");
+        wh.InsertARecord(in1);
+        wh.InsertARecord(in2);
+        wh.InsertARecord(in3);
+        wh.InsertARecord(in4);
+        wh.InsertARecord(in5);
+        wh.InsertARecord(in6);
+        wh.InsertARecord(in7);
+        wh.InsertARecord(in8);
+        wh.InsertARecord(in9);
+        wh.InsertARecord(in10);
+        wh.InsertARecord(in11);
+
+    }
+
+        public void testWarehouseSize(){
+            // test inventories in the database function after inserting new records
+            System.out.println("\nNumber of inventories in the database: " + wh.InventoriesInDatabase());
+        }
+
+
+        public void testInventoryValue ()
+        {
+
+            // test total value of all the inventories function after inserting new records
+            System.out.println("\nTotal value of all the inventories: " + wh.TotalValueOfInventories());
+            System.out.println();
+        }
+
+        public void testRemove () {
+
+            Inventory in1 = new Inventory("Item 1", "Desc 1", 51.00, 25, 1275.00, 29, 13, 50, true, "IN0001");
+            Inventory in4 = new Inventory("Item 4", "Desc 4", 19.00, 186, 3534.00, 158, 6, 50, false, "IN0004");
+
+
+            // test remove function
+            System.out.println("\nRemoving records given a key\n");
+            System.out.println("\nRemoved records from the database are: " + in1.getSKU() + " and "+in4.getSKU());
+            wh.RemoveARecord("IN0001");
+            wh.RemoveARecord("IN0004");
+
+            System.out.println("\nNumber of inventories in the database: " + wh.InventoriesInDatabase());
+            System.out.println("\nTotal value of all the inventories: " + wh.TotalValueOfInventories());
+            System.out.println();
+        }
+
+
+        public void testFind () {
+            Inventory in3 = new Inventory("Item 3", "Desc 3", 57.00, 151, 8607.00, 114, 11, 150, false, "IN0003");
+
+            // Test find function
+            System.out.println("\nFinding records given a key\n");
+            System.out.println("\nIs " + in3.getSKU() + " in the database?");
+            wh.findARecord("IN0003");
+            System.out.println();
+        }
+
+
+
+    public void testQ11(){
+        System.out.println("q1.1");
+        Inventory [] inventoriesSorted = new Inventory[11];
+
+
+        inventoriesSorted = wh.CreateIndex( "Inventory Value");
+
+        System.out.println("Sorted array is \n");
+        for(int i=0; i < 11 ; i++)
+        {
+
+            System.out.println(inventoriesSorted[i].getInventoryValue());
+        }
+        System.out.println();
+        System.out.println();
+
+    }
+
+
+
+
+
+
+    public void testQ12 () {
+
+        //Test createIndex function + BST
+
+        System.out.println("\nInventory Value\n");
+        BSTNode<String, Inventory> in6 = wh.createIndex("Inventory Value");
+        System.out.println();
+
+    }
+
+    public void testQuery()
+    {
+
+        Inventory in8 = new Inventory("Item 8", "Desc 8", 38.00, 101, 3838.00, 162, 3, 100, true, "IN0008");
+
+        String inv = wh.query("Inventory Value",0.64);
+
+        assertEquals(in8.printRecordstr(),inv,"Inventories values not in ascending order");
+
+
+
+        System.out.println("assert for query worked");
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void testClear () {
+        // Test clear function
+        System.out.println("\nClearing the database (removeAll)\n");
+        wh.clearDatabase();
+
+        System.out.println("\nNumber of inventories in the database: " + wh.InventoriesInDatabase());
+        System.out.println("\nTotal value of all the inventories: " + wh.TotalValueOfInventories());
+        System.out.println();
+    }
+}
+
+
+

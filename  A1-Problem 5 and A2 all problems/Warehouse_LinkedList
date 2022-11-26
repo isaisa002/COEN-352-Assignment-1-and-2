@@ -1,0 +1,653 @@
+package coen352.a1;
+
+public class Warehouse_LinkedList
+{
+
+    //data members
+    private double valAllInv;
+    private int nbInvDatabase;
+    private SLLDict<String, Inventory> warehouse;
+
+    //constructor
+    Warehouse_LinkedList()
+    {
+        warehouse = new SLLDict<String, Inventory>();
+        valAllInv = 0.00;
+        nbInvDatabase = 0;
+    }
+
+    //ASSIGMENT 1
+    // 1. Insert a record
+    public void InsertARecord (Inventory in)
+    {
+        warehouse.insert(in.getSKU(),in);
+        valAllInv += in.getInventoryValue();
+        nbInvDatabase++; //increment
+        System.out.println("Record " + in.getName() + " was added.");
+    }
+
+    // 2. Remove a record given a key
+    public void RemoveARecord(String key)
+    {
+        valAllInv -= warehouse.find(key).getInventoryValue() ;
+        warehouse.remove(key);
+
+        nbInvDatabase--; //decrement
+        System.out.println("Record " + key + " was removed.");
+
+    }
+
+    // 3. Clear the database (removeAll)
+    public void clearDatabase()
+    {
+        //set all to 0
+        warehouse.clear();
+        nbInvDatabase = 0;
+        valAllInv = 0;
+    }
+    // 4. Find a record given a key
+    public void findARecord (String SKU)
+    {
+        System.out.println("Record " + warehouse.find(SKU).getSKU()+ " is in the inventory:");
+        warehouse.find(SKU).PrintRecord();
+
+    }
+
+    // 5. Return the number of inventories in the database
+    public int InventoriesInDatabase() {
+        return nbInvDatabase;
+    }
+
+    // 6. Return the total value of all inventories
+    public double TotalValueOfInventories() {
+        return valAllInv;
+    }
+
+
+
+
+    //ASSIGNMENT 2
+    //PROBLEM 1
+    public Inventory[] CreateIndex(String attribute) {
+
+
+        Inventory[] sortedArr = new Inventory[warehouse.dictionarySize()];
+        int count = 0;
+
+        //dictionary list converts to unsorted array
+        for (warehouse.getList().moveToHead(); warehouse.getList().getcurrPosition()< warehouse.dictionarySize(); warehouse.getList().moveToNext() )
+        {
+
+            if(count< warehouse.dictionarySize()) {
+
+                sortedArr[count++] = warehouse.getList().getElement().getElement();
+            }else break;
+        }
+
+        //sorted the array
+        QuickSort(attribute, sortedArr, 0, warehouse.dictionarySize());
+
+        return sortedArr;
+    }
+
+
+
+
+
+    /*
+         1. Choose pivot as the first element of array and divide into 2 halfs :
+             left  -> elements less than pivot
+             right -> elements greater than pivot
+
+         2. j moves from end to start (right to left)
+            look for value less than pivot & assign it to position of i
+
+         3. i moves from start to end (left to right)
+            look for value greater than pivot & assign it to position of j
+
+         4. when i crossed j put pivot at sorted position & return position of pivot
+            to know left half and right half & sorted them
+     */
+
+
+
+
+
+    int partition(String attribute, Inventory[] Arr, int start, int end) {
+
+        //set the first element of array as the pivot
+        Inventory pivot = Arr[start];
+
+
+        int i = start;
+        int j = end;
+
+
+
+        //Before i crossed/go over j
+        while (i < j) {
+
+
+
+            switch (attribute) {
+
+                case "SKU":
+
+                    //empty loop to decrement j & look for element less than pivot
+                    // While : if i<j & element > pivot, continue loop and go to next element with --j
+                    //         Stop loop when i>j (i have crossed j) or element < pivot (as wanted)
+                    while (i < j && (Arr[--j].getSKU().compareTo(pivot.getSKU()) > 0)) ;
+
+                    //Put element at position of i if less than pivot & i haven't crossed j
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //empty loop to decrement j & look for element greater than pivot
+                    // While : if i<j & element < pivot, continue loop and go to next element with ++i
+                    //         Stop loop when i>j (i have crossed j) or element > pivot (as wanted)
+                    while (i < j && (Arr[++i].getSKU().compareTo(pivot.getSKU()) < 0)) ;
+
+                    //Put element at position of j if greater than pivot & i haven't crossed j
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+
+
+
+                case"Name":
+
+
+                    //Forming left half
+                    while (i < j && (Arr[--j].getName().compareTo(pivot.getName()) > 0)) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getName().compareTo(pivot.getName()) < 0)) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+                case"Description":
+
+                    //Forming left half
+                    while (i < j && (Arr[--j].getDescription().compareTo(pivot.getDescription()) > 0)) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getDescription().compareTo(pivot.getDescription()) < 0)) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+                case "Unit price":
+                    //Forming left half
+                    while (i < j && (Arr[--j].getUnitPrice()>=(pivot.getUnitPrice()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getUnitPrice()<=(pivot.getUnitPrice()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+
+                case "Quantity in stock":
+                    //Forming left half
+                    while (i < j && (Arr[--j].getQuantityInStock()>=(pivot.getQuantityInStock()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getQuantityInStock()<=(pivot.getQuantityInStock()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+
+                case "Inventory Value":
+
+                    //Forming left half
+
+
+
+                    while (i < j && (Arr[--j].getInventoryValue()>=pivot.getInventoryValue()));
+                    if (i < j) {
+
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getInventoryValue()<=pivot.getInventoryValue()));
+                    if (i < j) {
+
+
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+
+
+                case "Reorder Level":
+                    //Forming left half
+                    while (i < j && (Arr[--j].getReorderLevel()>=(pivot.getReorderLevel()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getReorderLevel()<=(pivot.getReorderLevel()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+
+
+
+
+
+                case "Reorder Time Days":
+                    //Forming left half
+                    while (i < j && (Arr[--j].getReorderTimeDays()>=(pivot.getReorderTimeDays()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getReorderTimeDays()<=(pivot.getReorderTimeDays()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+
+                case "Quantity In Reorder":
+                    //Forming left half
+                    while (i < j && (Arr[--j].getQuantityInReorder()>=(pivot.getQuantityInReorder()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, i, j);
+                    }
+
+                    //Forming right half
+                    while (i < j && (Arr[++i].getQuantityInReorder()<=(pivot.getQuantityInReorder()))) ;
+                    if (i < j) {
+                        DSutil.swap(Arr, j, i);
+                    }
+
+
+
+
+
+
+
+
+            }//end switch
+
+
+
+
+
+
+
+
+        }//end of while(i<j)
+
+        //When i have crossed j
+        Arr[j]=pivot;
+        return j;
+
+
+    }
+
+
+
+    public void QuickSort (String attribute, Inventory[] Arr, int start, int end) {
+
+        if(end-start<2) {
+
+            return;
+        }
+
+
+        int pivotIndex = partition(attribute,Arr, start, end);
+        System.out.println("pivot: "+pivotIndex);
+
+
+        QuickSort(attribute,Arr, start, pivotIndex);   // Sort left partition
+        QuickSort(attribute,Arr, pivotIndex+1, end);   // Sort right partition
+
+    }
+
+
+
+//ASSIGNMENT 2
+    //PROBLEM 1.2
+
+
+
+
+    public void inserthelp(String attribute, BSTNode<String,Inventory> parent, Inventory in)
+    {
+        if(parent.element() == null)
+        {
+            parent.setElement(in);
+
+        }else {
+
+            switch (attribute)
+            {
+
+                case "SKU":
+                    if(parent.element().getSKU().compareTo(in.getSKU())<0) {
+
+                        //RIGHT NODE
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+
+
+                    }else{
+
+                        //LEFT
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+                    }
+
+                case "Name":
+                    if(parent.element().getName().compareTo(in.getName())<0) {
+
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+
+                    }
+
+
+
+                case "Description":
+                    if(parent.element().getDescription().compareTo(in.getDescription())<0) {
+
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+
+                    }
+
+
+
+
+
+                case "Unit price":
+                    if(parent.element().getUnitPrice() <in.getUnitPrice()) {
+
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+
+                    }
+
+
+
+
+
+
+
+
+                case "Quantity in stock":
+                    if(parent.element().getQuantityInStock() < in.getQuantityInStock()) {
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+                    }
+
+
+
+                case "Inventory Value":
+                    if(parent.element().getInventoryValue()<in.getInventoryValue()) {
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+                    }
+
+
+
+
+                case "Reorder Level":
+
+                    if(parent.element().getReorderLevel()<in.getReorderLevel()) {
+
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+                    }
+
+                case "Reorder Time Days":
+                    if(parent.element().getReorderTimeDays()<in.getReorderTimeDays()) {
+
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+
+                    }
+
+
+
+                case "Quantity In Reorder":
+
+                    if(parent.element().getQuantityInReorder()<in.getQuantityInReorder()) {
+
+                        //RIGHT NODE
+
+                        if(parent.right()==null){
+                            parent.setRight(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.right(), in);
+                        }
+
+
+                    }else{
+
+                        //LEFT NODE
+                        if(parent.left()==null){
+                            parent.setLeft(new BSTNode<String,Inventory>(attribute,in));
+                        }else{
+                            inserthelp(attribute, parent.left(), in);
+                        }
+
+                    } //else case
+
+            } //switch
+
+        }//else null parent
+    }//inserthelp function
+
+
+
+
+
+    public BSTNode<String,Inventory> createIndex(String attribute)
+    {
+        BSTNode<String,Inventory> parent = new  BSTNode<String,Inventory>();
+
+        Inventory[] wh_copy = new Inventory[warehouse.dictionarySize()];
+        int i=0;
+
+        int count=0;
+        //dictionary list converts to unsorted array
+        for (warehouse.getList().moveToHead(); warehouse.getList().getcurrPosition()< warehouse.dictionarySize(); warehouse.getList().moveToNext() )
+        {
+
+            if(count< warehouse.dictionarySize()) {
+
+                wh_copy[count++] = warehouse.getList().getElement().getElement();
+            }else break;
+        }
+
+
+
+        for(int j=0;j<wh_copy.length-1;j++) {
+            inserthelp(attribute, parent, wh_copy[j]);
+        }
+
+        return parent;
+
+    }
+
+    public void InOrderTraversing(BSTNode<String,Inventory> node) {
+
+        if (node == null) return;
+
+        InOrderTraversing(node.left());
+        InOrderTraversing(node.right());
+
+    }
+
+
+
+
+    //PROBLEM 2
+    public String query(String attribute, double perct) {
+
+        Inventory[] inventories = new Inventory[warehouse.dictionarySize()];
+        inventories = CreateIndex(attribute);
+
+        //pivot = lower bound of (N * perct)
+        double pivot = Math.floor(warehouse.dictionarySize()*perct);
+
+        return inventories[(int) pivot].printRecordstr();
+    }
+
+
+
+
+
+
+}

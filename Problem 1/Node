@@ -32,7 +32,7 @@ public class Node<ELEM> {
     }
 
     ELEM getElement() {
-        System.out.println("get elem node");
+
         return element;
     }
     ELEM setElement(ELEM elem){

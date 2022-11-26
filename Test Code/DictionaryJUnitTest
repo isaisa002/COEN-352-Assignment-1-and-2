@@ -15,7 +15,7 @@ public class DictionaryJUnitTest {
 
     @BeforeAll
     public static void setUp() {
-        System.out.println("setup of test");
+
         dict = new SLLDict<Integer, String>();
 
     }
@@ -25,12 +25,12 @@ public class DictionaryJUnitTest {
 
         dict.clear();
         assertEquals(0, dict.dictionarySize(), "clear failed, size is non zero");
-        System.out.println("test clear ok");
+        System.out.println("TEST CLEAR OK");
     }
 
     @Test
     void testInsert() {
-       System.out.println("TEST INSERT");
+
         dict.clear();
         dict.insert(0, "red");
         dict.insert(1, "blue");
@@ -43,7 +43,7 @@ public class DictionaryJUnitTest {
 
     @Test
     void testRemove() {
-        System.out.println("TEST REMOVE");
+
 
         dict.clear();
         dict.insert(0, "red");
@@ -55,7 +55,7 @@ public class DictionaryJUnitTest {
         //assertEquals("1:blue , 2:yellow , 3:grey ,", dict.toString());
 
         assertEquals("grey", dict.find(3), "remove failed");
-        System.out.println("find assert ok");
+
 
         System.out.println("TEST REMOVE OK");
 
@@ -69,6 +69,7 @@ public class DictionaryJUnitTest {
         dict.insert(2,"yellow");
         dict.insert(3, "grey");
         assertNotEquals("3:grey", dict.removeAny(), "removeAny failed");
+        System.out.println("TEST REMOVE ANY OK");
 
 
     }
@@ -95,6 +96,7 @@ public class DictionaryJUnitTest {
 
 
         assertEquals(1, dict.dictionarySize(), "size failed, size is not as expected");
+        System.out.println("TEST SIZE OK");
     }
 
 }
